@@ -1,0 +1,7 @@
+STDOUT
+{"endpoint": "http://127.0.0.1:11434/api/chat", "modelo_solicitado": "qwen2.5:3b", "timeout_s": 5.0}
+
+STDERR
+BLOQUEADO: sem conexão/resposta de Ollama: <urlopen error [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente>
+
+EXIT_CODE=2

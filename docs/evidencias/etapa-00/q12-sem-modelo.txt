@@ -1,0 +1,6 @@
+STDOUT
+
+STDERR
+BLOQUEADO: informe --model ou OLLAMA_MODEL instalado no servidor
+
+EXIT_CODE=2

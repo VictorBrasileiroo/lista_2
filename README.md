@@ -2,7 +2,7 @@
 
 **Prazo oficial informado pelo estudante:** 17/11/2026, 23h59 (horário local).  
 **Meta interna:** conteúdo e implementações congelados até 13/11; auditoria de 14 a 16/11.  
-**Estado inicial:** etapa 0 de planejamento pronta; **nenhuma das 15 questões foi implementada ou aprovada**.
+**Estado:** Etapa 00 com dois spikes isolados para revisão; **nenhuma das 15 questões foi implementada integralmente ou aprovada**. Ambiente e reprodução em [`docs/07-ambiente-etapa-00.md`](docs/07-ambiente-etapa-00.md); resultados reais em [`docs/08-evidencias-etapa-00.md`](docs/08-evidencias-etapa-00.md).
 
 ## Comece aqui
 
@@ -41,4 +41,4 @@ gh repo create lista-2-inteligencia-artificial --public --source . --remote orig
 
 Alternativa: crie o repositório público no site do GitHub, sem README/.gitignore automático, e faça `git remote add origin <URL>` + `git push -u origin main` (configure o nome da branch antes, se necessário).
 
-**Observação:** o ZIP é um repositório local **não publicado**. Nenhum repositório remoto foi criado por este pacote.
+**Observação:** os comandos acima são instruções históricas do pacote inicial. Nesta execução foi encontrado o remoto `https://github.com/VictorBrasileiroo/lista_2.git`; não execute `git init`/`gh repo create` novamente neste checkout.

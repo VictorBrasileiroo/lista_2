@@ -4,6 +4,15 @@
 **Status na etapa 0:** `PENDENTE` (planejamento, não implementação).  
 **Bloco:** B1.
 
+## Spike da Etapa 00 (isolado)
+
+`spike_reasoner.py` e `requirements-spike.txt` verificam apenas Java/HermiT,
+consistência e um tipo inferido em ontologia mínima (três classes/um indivíduo).
+Não atendem às contagens nem implementam o recomendador final.
+Ver [ambiente e comandos](../../docs/07-ambiente-etapa-00.md) e
+[resultados observados](../../docs/08-evidencias-etapa-00.md).
+O checklist abaixo continua pendente para a questão completa.
+
 ## O que exige o enunciado
 
 Domínio proposto: recursos de aprendizagem; OWL 2 com >=10 classes, >=15 propriedades, hierarquia, restrições, axiomas, indivíduos, consulta semântica, reasoner, recomendações justificadas e evidências de raciocínio.
