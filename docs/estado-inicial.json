@@ -1,0 +1,14 @@
+{
+  "titulo": "Lista 2 IA",
+  "prazo": "2026-11-17T23:59:00-03:00",
+  "etapa": 0,
+  "questoes": {
+    "total": 15,
+    "aprovadas": 0,
+    "bloqueadas": [
+      2
+    ]
+  },
+  "criado_em": "2026-10-30",
+  "arquitetura": "Python CLI, OWL+reasoner, Ollama local configuravel"
+}

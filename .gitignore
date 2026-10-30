@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# Dados privados e materiais originais não redistribuíveis
+materiais_originais/
+**/dados_privados/
+**/data/private/
+# artefatos temporários
+*.log
+.cache/
+_tmp/
+AGENTS.md
