@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="https://example.org/etapa00.owl"
+         xmlns="https://example.org/etapa00.owl#">
+
+<owl:Ontology rdf:about="https://example.org/etapa00.owl"/>
+
+<owl:DatatypeProperty rdf:about="#nivel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Recurso"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Recurso">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#RecursoBasico">
+  <rdfs:subClassOf rdf:resource="#Recurso"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Recurso"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#nivel"/>
+          <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">basico</owl:hasValue>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <owl:disjointWith rdf:resource="#RecursoAvancado"/>
+</owl:Class>
+
+<owl:Class rdf:about="#RecursoAvancado">
+  <rdfs:subClassOf rdf:resource="#Recurso"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#exemplo">
+  <rdf:type rdf:resource="#Recurso"/>
+  <nivel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">basico</nivel>
+</owl:NamedIndividual>
+
+
+</rdf:RDF>

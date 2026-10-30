@@ -1,0 +1,74 @@
+[
+  {
+    "nome": "estrutura",
+    "comando": [
+      ".venv/Scripts/python.exe",
+      "scripts/verificar_estrutura.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "nome": "contrato-json",
+    "comando": [
+      ".venv/Scripts/python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0
+  },
+  {
+    "nome": "q09",
+    "comando": [
+      ".venv/Scripts/python.exe",
+      "questoes/q09/spike_reasoner.py",
+      "--output",
+      "_tmp/q09"
+    ],
+    "exit_code": 0
+  },
+  {
+    "nome": "q09-inconsistente",
+    "comando": [
+      ".venv/Scripts/python.exe",
+      "questoes/q09/spike_reasoner.py",
+      "--inconsistent",
+      "--output",
+      "_tmp/q09-inconsistent"
+    ],
+    "exit_code": 0
+  },
+  {
+    "nome": "q12",
+    "comando": [
+      ".venv/Scripts/python.exe",
+      "questoes/q12/spike_ollama.py",
+      "--model",
+      "qwen2.5:3b",
+      "--timeout",
+      "5"
+    ],
+    "exit_code": 2
+  },
+  {
+    "nome": "q12-sem-modelo",
+    "comando": [
+      ".venv/Scripts/python.exe",
+      "questoes/q12/spike_ollama.py"
+    ],
+    "exit_code": 2
+  },
+  {
+    "nome": "pip-check",
+    "comando": [
+      ".venv/Scripts/python.exe",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0
+  }
+]

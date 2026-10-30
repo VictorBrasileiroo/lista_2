@@ -13,6 +13,14 @@
 | **Repo público** | Exposição inadvertida de segredos e material protegido | Não versionar PDF original, dados privados, chaves, logs sensíveis, transcrição integral de vídeos | ABERTO |
 | **Formato de submissão não explicitado** | Falta de artefatos finais aceitos pelo professor | Conferir plataforma de entrega/instruções adicionais; pacote final conter README e arquivos reproduzíveis | ABERTO |
 
+## Atualização factual — Etapa 00, 30/10/2026
+
+- **Q9 spike: PRONTA_PARA_REVISAO.** Java 21.0.9 + Owlready2 0.48 + HermiT 1.3.8.1099 executados. Consistência/inferência comprovadas e controle inconsistente rejeitado. Q9/Q15 completas continuam pendentes; Protégé não foi executado.
+- **Q12 integração: BLOQUEADA.** POST real a `http://127.0.0.1:11434/api/chat` com modelo solicitado `qwen2.5:3b` retornou WinError 10061 (conexão recusada). O nome é parâmetro de tentativa, não evidência de modelo instalado. Nada permite concluir se o Ollama do computador do estudante existe ou está funcional em outro contexto. Repetir com URL/modelo acessíveis; não substituir por fixtures.
+- **Ambiente:** Python 3.12.4 convencional funciona, enquanto alias Store falhou no sandbox. Primeiro pip falhou por restrição de rede (WinError 10013); repetição autorizada fora da restrição instalou Owlready2 com sucesso. Não permanece bloqueio de Java/Owlready2.
+- **Enunciado:** original não localizado no inventário; conferir matriz operacional parcial com as 11 páginas antes de implementar questões completas.
+- **Revisão:** nenhuma questão aprovada; manter execução limitada à Etapa 00. Relatório, logs reais e comandos em [08-evidencias-etapa-00.md](08-evidencias-etapa-00.md).
+
 ## Decisão de contingência
 
 Se um requisito técnico ameaçar 13/11, reduzir apresentação/UI, não remover a inferência real nem o artefato formal. Se dependência for externa (Lista 1 ou vídeo), explicitar bloqueio e trabalhar em outra questão, sem produzir evidência sintética indevida.

@@ -4,6 +4,15 @@
 **Status na etapa 0:** `PENDENTE` (planejamento, não implementação).  
 **Bloco:** B1.
 
+## Spike da Etapa 00 (isolado)
+
+`spike_ollama.py` verifica somente chamada HTTP real e contrato JSON de um pedido
+fixo. Não implementa assistente, planejador ou validação de conflitos de agenda.
+Ver [ambiente e comandos](../../docs/07-ambiente-etapa-00.md) e
+[resultados observados](../../docs/08-evidencias-etapa-00.md).
+Execução LLM depende de servidor/modelo acessíveis; testes unitários artificiais
+do contrato não demonstram integração. Checklist da questão completa pendente.
+
 ## O que exige o enunciado
 
 Implementar assistente acadêmico com interface em linguagem natural, uso efetivo de LLM, inferência/planejamento de ações e explicações; modelo local opcional via Ollama.

@@ -1,0 +1,14 @@
+STDOUT
+
+STDERR
+test_invalid_contents (test_spike_ollama.ContractTests.test_invalid_contents) ... ok
+test_invalid_durations (test_spike_ollama.ContractTests.test_invalid_durations) ... ok
+test_invalid_envelopes (test_spike_ollama.ContractTests.test_invalid_envelopes) ... ok
+test_known_half_hour (test_spike_ollama.ContractTests.test_known_half_hour) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK
+
+EXIT_CODE=0

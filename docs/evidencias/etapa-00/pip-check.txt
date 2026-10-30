@@ -1,0 +1,6 @@
+STDOUT
+No broken requirements found.
+
+STDERR
+
+EXIT_CODE=0

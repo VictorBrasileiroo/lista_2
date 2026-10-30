@@ -1,0 +1,21 @@
+STDOUT
+{"python": "3.12.4", "owlready2": "0.48", "reasoner": "HermiT bundled", "hermit": "1.3.8.1099\nHermiT is a product of Oxford University.\nVisit <http://hermit-reasoner.org/> for details.", "java": "openjdk version \"21.0.9\" 2025-10-21 LTS\nOpenJDK Runtime Environment Microsoft-12574459 (build 21.0.9+10-LTS)\nOpenJDK 64-Bit Server VM Microsoft-12574459 (build 21.0.9+10-LTS, mixed mode, sharing)"}
+{"status": "OK", "consistente": true, "antes": ["Recurso"], "depois": ["RecursoBasico"], "novo_tipo": "RecursoBasico", "saida": "_tmp\\q09"}
+
+STDERR
+* Owlready2 * Running HermiT...
+    java -Xmx2000M -cp <REPO>\.venv\Lib\site-packages\owlready2\hermit;<REPO>\.venv\Lib\site-packages\owlready2\hermit\HermiT.jar org.semanticweb.HermiT.cli.CommandLine -c -O -D -I file:///C:/Users/victo/AppData/Local/Temp/tmpd3o5_8qs
+* Owlready2 * HermiT took 0.7300436496734619 seconds
+* Owlready2 * HermiT output:
+SubClassOf( <https://example.org/etapa00.owl#RecursoBasico> <https://example.org/etapa00.owl#Recurso> )
+SubClassOf( <https://example.org/etapa00.owl#RecursoAvancado> <https://example.org/etapa00.owl#Recurso> )
+
+
+
+Type( <https://example.org/etapa00.owl#exemplo> <https://example.org/etapa00.owl#Recurso> )
+Type( <https://example.org/etapa00.owl#exemplo> <https://example.org/etapa00.owl#RecursoBasico> )
+
+* Owlready * Reparenting etapa00.exemplo: {etapa00.Recurso} => {etapa00.RecursoBasico}
+* Owlready * (NB: only changes on entities loaded in Python are shown, other changes are done but not listed)
+
+EXIT_CODE=0

@@ -1,0 +1,7 @@
+STDOUT
+OK: estrutura inicial presente (15 pastas de questões).
+ATENÇÃO: isto NÃO testa implementação, qualidade, inferência, fontes ou entrega.
+
+STDERR
+
+EXIT_CODE=0
