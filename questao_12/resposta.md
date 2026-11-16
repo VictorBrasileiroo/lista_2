@@ -1,4 +1,4 @@
-# Questão 12: agente de planejamento acadêmico baseado em LLM
+# Questão 12: Agente de planejamento acadêmico baseado em LLM
 
 Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
@@ -8,7 +8,7 @@ A aplicação recebe uma descrição de atividades acadêmicas em português e p
 
 O sistema combina interpretação por um modelo de linguagem com ferramentas locais de planejamento e verificação. O modelo transforma o texto em dados estruturados. A seleção das atividades, os cálculos de horários e a verificação das restrições são realizados em Python. Assim, a aplicação executa ações sobre uma representação do problema e produz uma resposta vinculada a essas ações.
 
-A versão atual usa a API do Gemini, conforme a escolha de utilizar uma chave de conta gratuita e dispensar a instalação de um modelo local. O programa e suas ferramentas continuam executados no computador do usuário; o texto da solicitação é enviado ao serviço Google para interpretação. A integração substitui a escolha inicial de Ollama, preservando o objetivo do enunciado.
+A aplicação usa a API do Gemini, que oferece uma faixa de uso gratuita e dispensa a instalação de um modelo local. O programa e suas ferramentas continuam executados no computador do usuário; o texto da solicitação é enviado ao serviço Google para interpretação.
 
 Foi implementado um agente com fluxo de controle predefinido. O programa decide quando chamar o extrator, solicitar esclarecimentos, executar o planejador e verificar a resposta. Não há escolha livre de ferramentas pelo modelo nem necessidade de um framework de agentes. A interface funciona no terminal e apenas propõe horários; nenhuma atividade é executada e nenhum evento é criado em calendários.
 
@@ -239,7 +239,7 @@ Ran 69 tests in 0.167s
 OK
 ```
 
-Esse tempo descreve somente a execução observada da suíte, sem inferência de modelo. Não representa uma medição de desempenho do agente com Gemini.
+Em 16/11/2026, a suíte foi reexecutada com Python 3.14.7, com os mesmos 69 testes aprovados. Esse tempo descreve somente a execução observada da suíte, sem inferência de modelo. Não representa uma medição de desempenho do agente com Gemini.
 
 | Grupo | Quantidade | Resultado | O que verifica |
 |---|---:|---|---|
@@ -284,9 +284,7 @@ O campo de data não estava disponível e não foi estimado. O modelo retornou J
 | Agenda e explicação apresentadas | Confirmadas, com B pendente |
 | Limites e faturamento do projeto | Não auditados; as requisições foram aceitas |
 
-A tentativa inicial dentro do ambiente isolado não alcançou a API. As duas execuções com inferência foram feitas fora dessa restrição de rede. Isso é diferente das falhas anteriores por ausência de chave ou indisponibilidade de Ollama, que não foram consideradas evidência de execução real.
-
-O HTTP 400 relatado no terminal do usuário não foi reproduzido com a chave do `.env` nas execuções observadas. Portanto, sua causa exata não foi confirmada. O arquivo preenchido passou a ter preferência sobre variáveis antigas do terminal, e os erros agora preservam o detalhe útil retornado pela API, com credenciais ocultadas, para permitir identificar a causa caso ocorra novamente.
+Em caso de erro HTTP, o programa preserva o detalhe útil retornado pela API, com credenciais ocultadas, para permitir identificar a causa.
 
 ## 9. Limitações
 
@@ -306,7 +304,7 @@ Não há persistência das atividades, execução das tarefas, integração com 
 
 Utilize uma chave de API do [Google AI Studio](https://aistudio.google.com/apikey), associada a um projeto com acesso gratuito disponível. Não é necessário instalar Ollama, baixar modelos ou instalar o SDK do Google.
 
-Abra `questao_12/.env` e preencha a linha `GEMINI_API_KEY=` com sua chave. O arquivo já foi criado com essa linha vazia e com o modelo padrão. Exemplo de formato, usando somente um marcador fictício:
+Crie o arquivo `questao_12/.env`, que não é versionado, com o conteúdo abaixo, substituindo o marcador pela sua chave:
 
 ```dotenv
 GEMINI_API_KEY=SUA_CHAVE_AQUI

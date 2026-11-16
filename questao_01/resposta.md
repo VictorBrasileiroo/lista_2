@@ -14,6 +14,10 @@ As duas abordagens não são mutuamente exclusivas. Uma ontologia pode fornecer 
 | No catálogo | Define o significado de Livro, Autor e Tema e suas relações. | Registra que LivroPython foi escrito por Ana e aborda Programacao. |
 | Organização | Classes, hierarquias e propriedades com semântica definida. | Nós e relações; em RDF, conjuntos de triplas. |
 | Raciocínio | Os axiomas permitem estabelecer consequências lógicas, conforme a linguagem utilizada. | Os fatos podem ser consultados e ampliados com inferências quando associados a uma semântica apropriada. |
+| Hipótese de mundo | Em OWL, vale a hipótese de mundo aberto: a ausência de um fato não implica sua negação. | Em bancos de grafos, consultas costumam operar sob mundo fechado: o que não está armazenado é tratado como inexistente. |
+| Esquema | Exige modelagem conceitual prévia, com classes e axiomas definidos antes dos dados. | O esquema pode evoluir de forma incremental, à medida que novos tipos de entidades e relações são incorporados. |
+| Linguagens e ferramentas | OWL 2, editores como Protégé e reasoners como HermiT e Pellet. | RDF com SPARQL ou grafos de propriedades com Cypher, em sistemas como Neo4j. |
+| Escala e uso típico | Domínios especializados com vocabulário controlado, como Gene Ontology e SNOMED CT. | Grandes coleções de fatos interligados, como Wikidata e o Google Knowledge Graph. |
 | Complementaridade | Oferece uma estrutura conceitual compartilhada para os dados. | Representa os fatos usando essa estrutura, podendo incluir também o esquema. |
 
 A diferença está na ênfase de cada abordagem. Uma ontologia também pode conter indivíduos, e um grafo pode conter definições de classes e propriedades (W3C, 2012). A distinção entre esquema e fatos ajuda a explicar o exemplo, mas não exige separar as tecnologias.

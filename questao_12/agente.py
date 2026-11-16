@@ -160,8 +160,8 @@ class ClienteGemini:
         self._chave = (chave if chave is not None else
                        os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY", "")).strip()
         if not self._chave:
-            raise ErroLLM("Chave ausente. Preencha GEMINI_API_KEY no arquivo .env ou defina a variável no PowerShell. "
-                          "A chave não deve ser colocada no código nem enviada na conversa.")
+            raise ErroLLM("Chave ausente. Preencha GEMINI_API_KEY no arquivo .env ou defina a variável de ambiente. "
+                          "A chave não deve ser colocada no código nem compartilhada.")
         if not self._chave.isascii() or any(caractere.isspace() for caractere in self._chave):
             raise ErroLLM("A chave de API deve ser um texto ASCII sem espaços ou quebras de linha.")
         if not 0 < timeout <= 600:

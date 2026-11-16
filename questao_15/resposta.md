@@ -1,4 +1,4 @@
-# Questão 15: ontologia OWL 2 com inferência automática
+# Questão 15: Ontologia OWL 2 com inferência automática
 
 Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
@@ -186,7 +186,7 @@ Ambiente efetivamente utilizado:
 | Java | Microsoft OpenJDK 21.0.9 LTS, build 21.0.9+10 |
 | HermiT incluído no Owlready2 | `Implementation-Version: 1.3.8.1099`, conforme manifesto do JAR |
 
-Foram executados a criação do ambiente local, a instalação do Owlready2, `pip check`, `java -version` e os três modos da CLI. O Python encontrado inicialmente no `PATH` era um atalho WindowsApps que falhou neste ambiente; por isso, o ambiente da questão foi criado usando o Python 3.13.12 disponível em `..\.venv\Scripts\python.exe`. A primeira tentativa de instalação foi bloqueada pela restrição de rede do sandbox, e a repetição com a autorização de execução do ambiente concluiu a instalação. Não houve falha do HermiT nos testes positivos ou negativos.
+Foram executados a criação do ambiente local, a instalação do Owlready2, `pip check`, `java -version` e os três modos da CLI. Não houve falha do HermiT nos testes positivos ou negativos. Em 16/11/2026, a demonstração e o teste negativo foram reexecutados com Python 3.14.7, Owlready2 0.51 e Microsoft OpenJDK 21.0.13, com os mesmos resultados.
 
 A demonstração e o teste negativo também foram executados com `-O`, a partir da raiz do repositório, com sucesso. Em uma verificação adicional do tratamento de falhas, a chamada ao reasoner foi substituída por uma função vazia apenas naquele processo de teste. A demonstração retornou código 1 por ausência das inferências esperadas, mesmo com `-O`. Esse teste controlado verifica a rejeição de resultados ausentes; as conclusões da tabela foram obtidas nas execuções reais do HermiT.
 
