@@ -8,7 +8,7 @@ Alunos:
 - José Riquelme Teixeira da Silva
 - Erasmo da Silva Sá Junior
 
-Enunciado: [Lista 2](docs/Lista%202_IA_Grad_2026_2%20%281%29.pdf).
+Enunciado: [Lista 2](https://github.com/VictorBrasileiroo/lista_2/blob/main/docs/Lista%202_IA_Grad_2026_2%20%281%29.pdf).
 
 ---
 
@@ -36,7 +36,7 @@ Enunciado: [Lista 2](docs/Lista%202_IA_Grad_2026_2%20%281%29.pdf).
 
 ## Questão 1: Ontologias e Grafos de Conhecimento
 
-[Pasta da questão](questao_01/)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_01)
 
 ### 1. Introdução
 
@@ -146,7 +146,7 @@ W3C (2014c). RDF 1.1 Turtle: Terse RDF Triple Language. Recomendação, 25 fev. 
 
 ## Questão 2: K-vizinhos mais próximos (KNN)
 
-[Pasta da questão](questao_02/) | [dados.csv](questao_02/dados.csv) | [knn.py](questao_02/knn.py)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_02) | [dados.csv](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_02/dados.csv) | [knn.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_02/knn.py)
 
 ### 1. Funcionamento do KNN
 
@@ -284,7 +284,7 @@ A base é pequena e foi construída para fins didáticos. A acurácia de 36,67% 
 
 ## Questão 3: ELIZA, PARRY e AIML/ALICE
 
-[Pasta da questão](questao_03/)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_03)
 
 ### 1. Introdução e funcionalidades do ELIZA
 
@@ -439,7 +439,7 @@ WALLACE, Richard S. The Anatomy of A.L.I.C.E. In: EPSTEIN, Robert; ROBERTS, Gary
 
 ## Questão 4: Categorias de agentes inteligentes e PEAS
 
-[Pasta da questão](questao_04/)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_04)
 
 ### 1. Introdução
 
@@ -659,7 +659,7 @@ Página oficial da obra: <https://aima.cs.berkeley.edu/>.
 
 ## Questão 5: Inferência em LLMs: do prompt à geração da resposta
 
-[Pasta da questão](questao_05/)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_05)
 
 ### 1. Introdução
 
@@ -750,7 +750,7 @@ IBM TECHNOLOGY. What Is LLM Inference? How AI Models Generate Responses. YouTube
 
 ## Questão 6: Sistema de inferência fuzzy com Mamdani
 
-[Pasta da questão](questao_06/) | [requirements.txt](questao_06/requirements.txt) | [sistema_fuzzy.py](questao_06/sistema_fuzzy.py)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_06) | [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_06/requirements.txt) | [sistema_fuzzy.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_06/sistema_fuzzy.py)
 
 ### 1. Introdução e descrição da aplicação
 
@@ -942,7 +942,7 @@ O arquivo de dependências inclui Scikit-Fuzzy, NumPy, SciPy, NetworkX e Matplot
 
 ## Questão 7: Sistema de Apoio ao Diagnóstico Médico Baseado em Casos
 
-[Pasta da questão](questao_07/) | [casos.json](questao_07/casos.json) | [sistema_rbc.py](questao_07/sistema_rbc.py)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_07) | [casos.json](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_07/casos.json) | [sistema_rbc.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_07/sistema_rbc.py)
 
 Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
@@ -956,7 +956,7 @@ O programa foi implementado em Python 3, usando somente a biblioteca padrão e u
 
 ### 2. Base de conhecimento
 
-A base inicial em [casos.json](questao_07/casos.json) contém 15 registros, distribuídos igualmente entre cinco condições.
+A base inicial em [casos.json](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_07/casos.json) contém 15 registros, distribuídos igualmente entre cinco condições.
 
 | Condição | Identificador textual | IDs | Quantidade |
 | --- | --- | --- | --- |
@@ -1001,7 +1001,7 @@ Todos os sintomas têm o mesmo peso. O programa não considera intensidade, dura
 
 ### 4. Implementação do ciclo RBC
 
-O código está em [sistema_rbc.py](questao_07/sistema_rbc.py).
+O código está em [sistema_rbc.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_07/sistema_rbc.py).
 
 #### 4.1 Recuperação
 
@@ -1166,7 +1166,7 @@ Enunciado da Questão 7 da Lista 2 de Inteligência Artificial, 2026.2, professo
 
 ## Questão 8: Sistema de diagnóstico médico com redes bayesianas
 
-[Pasta da questão](questao_08/) | [apresentacao.html](questao_08/apresentacao.html) | [modelo.bif](questao_08/modelo.bif) | [rede.png](questao_08/rede.png) | [rede_bayesiana.py](questao_08/rede_bayesiana.py) | [requirements.txt](questao_08/requirements.txt)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_08) | [apresentacao.html](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/apresentacao.html) | [modelo.bif](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/modelo.bif) | [rede.png](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/rede.png) | [rede_bayesiana.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/rede_bayesiana.py) | [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/requirements.txt)
 
 Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
@@ -1192,7 +1192,7 @@ O modelo não distingue intensidade ou duração dos sintomas e não representa 
 
 ### 3. Estrutura da rede
 
-![Rede bayesiana com cinco variáveis e quatro arestas](questao_08/rede.png)
+![Rede bayesiana com cinco variáveis e quatro arestas](https://raw.githubusercontent.com/VictorBrasileiroo/lista_2/main/questao_08/rede.png)
 
 As quatro arestas são Exposicao → Gripe, Gripe → Febre, Gripe → Tosse e Gripe → DorMuscular. A interpretação causal adotada é que a exposição influencia a ocorrência de gripe e a gripe influencia os sintomas. As arestas codificam hipóteses do modelo, não relações causais comprovadas por esta implementação.
 
@@ -1373,7 +1373,7 @@ As referências fundamentam os conceitos e a utilização da biblioteca; nenhuma
 
 ## Questão 9: recomendação educacional de livros com OWL 2
 
-[Pasta da questão](questao_09/) | [apresentacao.html](questao_09/apresentacao.html) | [ontologia.owl](questao_09/ontologia.owl) | [recomendador.py](questao_09/recomendador.py) | [requirements.txt](questao_09/requirements.txt)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_09) | [apresentacao.html](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/apresentacao.html) | [ontologia.owl](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/ontologia.owl) | [recomendador.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/recomendador.py) | [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/requirements.txt)
 
 ### 1. Aplicação e objetivo
 
@@ -1383,7 +1383,7 @@ A base inteira é fictícia, incluindo títulos, autores, editoras e perfis de l
 
 ### 2. Modelagem conceitual
 
-A ontologia distribuída em [ontologia.owl](questao_09/ontologia.owl) é serializada em RDF/XML e possui a IRI estável `https://example.org/ia/2026.2/livros.owl#`. O endereço identifica o vocabulário; não precisa estar publicado nem ser acessado pela aplicação. O carregamento lê um arquivo local em um novo `World`, sem depender das classes Python usadas na construção.
+A ontologia distribuída em [ontologia.owl](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/ontologia.owl) é serializada em RDF/XML e possui a IRI estável `https://example.org/ia/2026.2/livros.owl#`. O endereço identifica o vocabulário; não precisa estar publicado nem ser acessado pela aplicação. O carregamento lê um arquivo local em um novo `World`, sem depender das classes Python usadas na construção.
 
 As quantidades verificadas após carregar o arquivo foram:
 
@@ -1641,7 +1641,7 @@ Os resultados são ordenados pelo título e pelo autor. As justificativas são e
 
 ### 9. Reprodução e validação
 
-Os cinco arquivos da solução são [recomendador.py](questao_09/recomendador.py), [ontologia.owl](questao_09/ontologia.owl), [requirements.txt](questao_09/requirements.txt), este [relatório](questao_09/resposta.md) e [apresentacao.html](questao_09/apresentacao.html). Não são necessários banco externo, servidor web, framework ou modelo de aprendizagem.
+Os cinco arquivos da solução são [recomendador.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/recomendador.py), [ontologia.owl](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/ontologia.owl), [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/requirements.txt), este [relatório](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/resposta.md) e [apresentacao.html](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/apresentacao.html). Não são necessários banco externo, servidor web, framework ou modelo de aprendizagem.
 
 Com Python 3 e Java instalados, abra o terminal nesta pasta:
 
@@ -1716,7 +1716,7 @@ As restrições existenciais e o mundo aberto não substituem uma validação de
 
 ## Questão 10: planejamento de rotas com algoritmos de busca
 
-[Pasta da questão](questao_10/) | [buscas.py](questao_10/buscas.py)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_10) | [buscas.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_10/buscas.py)
 
 ### 1. Introdução e formulação do problema
 
@@ -1736,7 +1736,7 @@ O grafo é não direcionado: cada trecho pode ser percorrido nos dois sentidos, 
 
 ### 2. Representação do grafo
 
-A implementação em [buscas.py](questao_10/buscas.py) utiliza um dicionário de adjacência. Cada localidade possui um dicionário com seus vizinhos e os respectivos custos. As 12 arestas são:
+A implementação em [buscas.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_10/buscas.py) utiliza um dicionário de adjacência. Cada localidade possui um dicionário com seus vizinhos e os respectivos custos. As 12 arestas são:
 
 | Trecho | Custo (min) | Trecho | Custo (min) |
 |---|---:|---|---:|
@@ -1943,7 +1943,7 @@ As verificações efetivamente executadas foram:
 8. Custo 14 da rota obrigatória, comparado com Bellman-Ford no espaço estendido.
 9. Conferência das tabelas e contagens deste relatório com a saída real da demonstração.
 
-As verificações estão incluídas em [buscas.py](questao_10/buscas.py) por meio de asserções e são executadas antes da apresentação dos resultados. Não se deve usar a opção `-O` na validação, pois ela desativa asserções. A conferência independente usa relaxações de Bellman-Ford, sem reutilizar a fila de prioridade ou a reconstrução de caminhos das buscas principais.
+As verificações estão incluídas em [buscas.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_10/buscas.py) por meio de asserções e são executadas antes da apresentação dos resultados. Não se deve usar a opção `-O` na validação, pois ela desativa asserções. A conferência independente usa relaxações de Bellman-Ford, sem reutilizar a fila de prioridade ou a reconstrução de caminhos das buscas principais.
 
 A validação cobre os dados fixos do exercício e a repetibilidade das execuções. Não constitui uma bateria de testes para grafos arbitrários, e nenhuma medição de tempo ou memória foi realizada. O ganho de A* relatado é exclusivamente a diferença na quantidade de expansões observada.
 
@@ -1957,7 +1957,7 @@ RUSSELL, Stuart; NORVIG, Peter. Artificial Intelligence: A Modern Approach. 4. e
 
 ## Questão 11: agentes inteligentes clássicos e agentes baseados em LLMs
 
-[Pasta da questão](questao_11/)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_11)
 
 ### 1. Introdução e apresentação do problema
 
@@ -2109,7 +2109,7 @@ YAO, Shunyu et al. ReAct: Synergizing Reasoning and Acting in Language Models. I
 
 ## Questão 12: agente de planejamento acadêmico baseado em LLM
 
-[Pasta da questão](questao_12/) | [agente.py](questao_12/agente.py) | [planejador.py](questao_12/planejador.py) | [requirements.txt](questao_12/requirements.txt) | [test_planejador.py](questao_12/test_planejador.py)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_12) | [agente.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_12/agente.py) | [planejador.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_12/planejador.py) | [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_12/requirements.txt) | [test_planejador.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_12/test_planejador.py)
 
 Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
@@ -2509,7 +2509,7 @@ Documentação oficial consultada em 12/11/2026:
 
 ## Questão 13: Ensaio sobre a arquitetura Transformer
 
-[Pasta da questão](questao_13/)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_13)
 
 ### 1. Introdução
 
@@ -2639,7 +2639,7 @@ JAIN, Sarthak; WALLACE, Byron C. Attention is not Explanation. In: Proceedings o
 
 ## Questão 14: Knowledge Graphs, representação, inferência e aprendizagem
 
-[Pasta da questão](questao_14/)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_14)
 
 Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
@@ -2838,7 +2838,7 @@ Na aplicação financeira, o exemplo demonstra como fatos de uso de dispositivos
 
 ## Questão 15: ontologia OWL 2 com inferência automática
 
-[Pasta da questão](questao_15/) | [ontologia.owl](questao_15/ontologia.owl) | [ontologia.py](questao_15/ontologia.py) | [requirements.txt](questao_15/requirements.txt)
+[Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_15) | [ontologia.owl](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_15/ontologia.owl) | [ontologia.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_15/ontologia.py) | [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_15/requirements.txt)
 
 Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
