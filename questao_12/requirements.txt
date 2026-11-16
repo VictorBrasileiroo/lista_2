@@ -1,0 +1,4 @@
+# Python 3.10 ou superior. Nenhuma dependência Python adicional.
+# Usa somente a biblioteca padrão (urllib.request, json, dataclasses, unittest).
+# Requisitos externos: internet e chave da API Gemini (GEMINI_API_KEY).
+# Modelo configurável por GEMINI_MODEL. Ollama não é necessário.

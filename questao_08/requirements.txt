@@ -1,0 +1,5 @@
+# Versões diretas utilizadas na validação com Python 3.13.12.
+pgmpy==1.1.2
+networkx==3.7
+matplotlib==3.10.8
+numpy==2.5.4

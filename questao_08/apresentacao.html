@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Questão 8: Rede bayesiana para gripe</title>
+<style>
+  :root { color-scheme: light; --ink:#173c3a; --accent:#176b64; --paper:#f7f8f4; --muted:#506763; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
+  main { max-width:1260px; margin:auto; padding:48px 64px 100px; }
+  section { min-height:650px; }
+  section[hidden] { display:none; }
+  .eyebrow { color:var(--accent); font-size:16px; letter-spacing:.1em; text-transform:uppercase; margin:0 0 28px; }
+  h1 { font-size:clamp(42px,5.3vw,70px); line-height:1.08; font-weight:500; max-width:950px; margin:48px 0 32px; letter-spacing:-.035em; }
+  h2 { font-size:clamp(32px,3.8vw,48px); line-height:1.12; font-weight:500; margin:0 0 30px; letter-spacing:-.025em; }
+  p,li { font-size:23px; line-height:1.5; }
+  p { max-width:1000px; }
+  .lead { font-size:28px; max-width:850px; }
+  .note { font-size:18px; color:var(--muted); }
+  .notice { border-left:4px solid var(--accent); padding-left:22px; margin-top:44px; max-width:880px; }
+  .split { display:grid; grid-template-columns:1.2fr 1fr; gap:38px; align-items:center; }
+  img { width:100%; height:auto; display:block; mix-blend-mode:multiply; }
+  table { border-collapse:collapse; width:100%; font-size:21px; line-height:1.4; margin:24px 0; }
+  th,td { text-align:left; padding:14px 16px; border-bottom:1px solid #ccd9d3; }
+  th { color:var(--accent); font-weight:600; }
+  td.num,th.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .results tbody tr:last-child { background:#dfebe3; }
+  code { font-family:Consolas,monospace; font-size:18px; overflow-wrap:anywhere; }
+  .command { display:block; border-top:1px solid #ccd9d3; padding-top:22px; margin-top:28px; }
+  ul { padding-left:25px; }
+  li { margin-bottom:18px; }
+  a { color:var(--accent); }
+  footer { position:fixed; bottom:0; left:0; width:100%; background:var(--paper); border-top:1px solid #ccd9d3; }
+  nav { max-width:1260px; padding:16px 64px; margin:auto; display:flex; align-items:center; gap:18px; }
+  button { font:inherit; font-size:17px; border:1px solid var(--accent); color:var(--ink); background:transparent; padding:10px 18px; cursor:pointer; border-radius:3px; }
+  button:disabled { opacity:.35; cursor:default; }
+  button:hover:enabled { background:#dfebe3; }
+  button:focus-visible,a:focus-visible { outline:3px solid #b36d24; outline-offset:4px; }
+  #counter { margin-left:auto; font-variant-numeric:tabular-nums; }
+  @media(max-width:760px) {
+    main { padding:28px 24px 110px; } section { min-height:unset; }
+    .split { grid-template-columns:1fr; gap:12px; }
+    p,li { font-size:19px; } .lead { font-size:23px; }
+    table { font-size:16px; } th,td { padding:10px 6px; }
+    nav { padding:12px 24px; gap:12px; } .eyebrow { font-size:13px; }
+  }
+  @media print {
+    footer { display:none; } main { padding:0; max-width:none; }
+    section,section[hidden] { display:block; min-height:0; break-after:page; padding:24px; }
+    section:last-child { break-after:auto; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <section id="slide-1" aria-labelledby="title-1">
+    <p class="eyebrow">Inteligência Artificial · Lista 2 · Questão 8</p>
+    <h1 id="title-1" tabindex="-1">Gripe em uma<br>rede bayesiana</h1>
+    <p class="lead">Atualização da probabilidade de gripe a partir de exposição recente e sintomas observados.</p>
+    <p>Python e pgmpy: modelo discreto, inferência exata e demonstração pelo terminal.</p>
+    <p class="notice">Modelo educacional com probabilidades hipotéticas.<br>Sem validação clínica ou finalidade de diagnóstico real.</p>
+    <p class="note">2026.2 · Professor Evandro Costa</p>
+  </section>
+
+  <section id="slide-2" aria-labelledby="title-2" hidden>
+    <p class="eyebrow">Modelo</p>
+    <h2 id="title-2" tabindex="-1">Cinco variáveis, quatro dependências</h2>
+    <div class="split">
+      <img src="rede.png" alt="Exposicao aponta para Gripe, que aponta para Febre, Tosse e DorMuscular.">
+      <div>
+        <p>Todas as variáveis têm os estados Não e Sim.</p>
+        <p>A exposição influencia a gripe; a gripe influencia os três sintomas.</p>
+        <p>Febre, tosse e dor muscular são independentes entre si dado o estado de gripe.</p>
+        <p class="note">Essa independência é uma simplificação e pode omitir relações clínicas relevantes.</p>
+      </div>
+    </div>
+    <p class="note">Uma variável não informada é desconhecida. Informar Não significa observar sua ausência.</p>
+  </section>
+
+  <section id="slide-3" aria-labelledby="title-3" hidden>
+    <p class="eyebrow">Parâmetros</p>
+    <h2 id="title-3" tabindex="-1">CPTs e hipóteses</h2>
+    <p>P(Exposicao=Sim) = 0,20; P(Exposicao=Não) = 0,80.</p>
+    <table>
+      <thead><tr><th>Variável X</th><th>Pai</th><th class="num">P(X=Sim | pai=Não)</th><th class="num">P(X=Sim | pai=Sim)</th></tr></thead>
+      <tbody>
+        <tr><td>Gripe</td><td>Exposicao</td><td class="num">0,05</td><td class="num">0,30</td></tr>
+        <tr><td>Febre</td><td>Gripe</td><td class="num">0,15</td><td class="num">0,85</td></tr>
+        <tr><td>Tosse</td><td>Gripe</td><td class="num">0,35</td><td class="num">0,80</td></tr>
+        <tr><td>DorMuscular</td><td>Gripe</td><td class="num">0,20</td><td class="num">0,75</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Em cada coluna, P(X=Não | pai) = 1 − P(X=Sim | pai). As CPTs completas estão no relatório e no BIF.</p>
+    <p>Valores hipotéticos do enunciado. Não foram estimados com casos da questão 7 ou dados clínicos.</p>
+  </section>
+
+  <section id="slide-4" aria-labelledby="title-4" hidden>
+    <p class="eyebrow">Inferência exata · VariableElimination</p>
+    <h2 id="title-4" tabindex="-1">Atualização com novas evidências</h2>
+    <table class="results">
+      <thead><tr><th>Evidências acumuladas</th><th class="num">P(Gripe=Não)</th><th class="num">P(Gripe=Sim)</th></tr></thead>
+      <tbody>
+        <tr><td>Nenhuma</td><td class="num">90,000000%</td><td class="num">10,000000%</td></tr>
+        <tr><td>Febre=Sim</td><td class="num">61,363636%</td><td class="num">38,636364%</td></tr>
+        <tr><td>+ Tosse=Sim</td><td class="num">40,997831%</td><td class="num">59,002169%</td></tr>
+        <tr><td>+ DorMuscular=Sim</td><td class="num">15,632754%</td><td class="num">84,367246%</td></tr>
+      </tbody>
+    </table>
+    <p>Os sintomas presentes favorecem gripe nas CPTs adotadas. A atualização mantém incerteza sobre os dois estados.</p>
+    <code class="command">python rede_bayesiana.py --demo<br>python rede_bayesiana.py --evidencias "Febre=Sim,Tosse=Sim"</code>
+    <p class="note">Resultados calculados pelo sistema; percentuais arredondados a seis casas decimais.</p>
+  </section>
+
+  <section id="slide-5" aria-labelledby="title-5" hidden>
+    <p class="eyebrow">Resultados e limitações</p>
+    <h2 id="title-5" tabindex="-1">Evidências negativas e exposição</h2>
+    <table>
+      <thead><tr><th>Cenário</th><th class="num">P(Gripe=Sim)</th></tr></thead>
+      <tbody>
+        <tr><td>Três sintomas ausentes</td><td class="num">0,188182%</td></tr>
+        <tr><td>Somente exposição presente / ausente</td><td class="num">30,000000% / 5,000000%</td></tr>
+        <tr><td>Três sintomas presentes e exposição presente</td><td class="num">95,416277%</td></tr>
+        <tr><td>Três sintomas presentes e exposição ausente</td><td class="num">71,881607%</td></tr>
+      </tbody>
+    </table>
+    <p>As posteriores dependem das CPTs hipotéticas e da independência condicional dos sintomas. Não houve avaliação com casos clínicos.</p>
+    <p class="note">Uma versão futura poderia estimar CPTs com dados confiáveis e revisar as dependências com especialistas.</p>
+    <p class="note">Fundamentação e detalhes: <a href="resposta.md">relatório técnico</a> · <a href="https://jmlr.org/papers/v25/23-0487.html">Ankan e Textor (2024)</a>. A apresentação funciona sem acessar esses links externos.</p>
+  </section>
+</main>
+<footer>
+  <nav aria-label="Navegação dos slides">
+    <button id="previous" type="button" aria-label="Slide anterior">Anterior</button>
+    <button id="next" type="button" aria-label="Próximo slide">Próximo</button>
+    <span id="counter" aria-live="polite">1 / 5</span>
+  </nav>
+</footer>
+<script>
+  const slides = Array.from(document.querySelectorAll('main > section'));
+  const previous = document.getElementById('previous');
+  const next = document.getElementById('next');
+  let current = 0;
+  function show(index, focus = true) {
+    current = Math.max(0, Math.min(slides.length - 1, index));
+    slides.forEach((slide, i) => { slide.hidden = i !== current; });
+    previous.disabled = current === 0;
+    next.disabled = current === slides.length - 1;
+    document.getElementById('counter').textContent = `${current + 1} / ${slides.length}`;
+    history.replaceState(null, '', `#slide-${current + 1}`);
+    window.scrollTo(0, 0);
+    if (focus) slides[current].querySelector('h1,h2').focus({preventScroll:true});
+  }
+  previous.addEventListener('click', () => show(current - 1));
+  next.addEventListener('click', () => show(current + 1));
+  document.addEventListener('keydown', event => {
+    if (['ArrowRight','PageDown','ArrowLeft','PageUp','Home','End'].includes(event.key)) {
+      event.preventDefault();
+      if (event.key === 'Home') show(0);
+      else if (event.key === 'End') show(slides.length - 1);
+      else show(current + (['ArrowRight','PageDown'].includes(event.key) ? 1 : -1));
+    }
+  });
+  function fromHash() {
+    const match = /^#slide-([1-5])$/.exec(location.hash);
+    show(match ? Number(match[1]) - 1 : 0, false);
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+</script>
+</body>
+</html>

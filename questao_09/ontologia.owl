@@ -1,0 +1,566 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="https://example.org/ia/2026.2/livros.owl"
+         xmlns="https://example.org/ia/2026.2/livros.owl#">
+
+<owl:Ontology rdf:about="https://example.org/ia/2026.2/livros.owl"/>
+
+<owl:ObjectProperty rdf:about="#temAutor">
+  <rdfs:domain rdf:resource="#Livro"/>
+  <rdfs:range rdf:resource="#Autor"/>
+  <owl:inverseOf rdf:resource="#autorDe"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#autorDe">
+  <rdfs:domain rdf:resource="#Autor"/>
+  <rdfs:range rdf:resource="#Livro"/>
+  <owl:inverseOf rdf:resource="#temAutor"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#abordaTema">
+  <rdfs:domain rdf:resource="#Livro"/>
+  <rdfs:range rdf:resource="#Tema"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#temNivel">
+  <rdfs:domain rdf:resource="#Livro"/>
+  <rdfs:range rdf:resource="#Nivel"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#temFormato">
+  <rdfs:domain rdf:resource="#Livro"/>
+  <rdfs:range rdf:resource="#Formato"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#publicadoPor">
+  <rdfs:domain rdf:resource="#Publicacao"/>
+  <rdfs:range rdf:resource="#Editora"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#prefereTema">
+  <rdfs:domain rdf:resource="#Leitor"/>
+  <rdfs:range rdf:resource="#Tema"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#prefereNivel">
+  <rdfs:domain rdf:resource="#Leitor"/>
+  <rdfs:range rdf:resource="#Nivel"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#prefereFormato">
+  <rdfs:domain rdf:resource="#Leitor"/>
+  <rdfs:range rdf:resource="#Formato"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#subTemaDe">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Tema"/>
+  <rdfs:range rdf:resource="#Tema"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#relacionadoA">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+  <rdfs:domain rdf:resource="#Tema"/>
+  <rdfs:range rdf:resource="#Tema"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#titulo">
+  <rdfs:domain rdf:resource="#Publicacao"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#nome">
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Autor"/>
+        <rdf:Description rdf:about="#Leitor"/>
+        <rdf:Description rdf:about="#Tema"/>
+        <rdf:Description rdf:about="#Nivel"/>
+        <rdf:Description rdf:about="#Formato"/>
+        <rdf:Description rdf:about="#Editora"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#anoPublicacao">
+  <rdfs:domain rdf:resource="#Publicacao"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#idioma">
+  <rdfs:domain rdf:resource="#Publicacao"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#numeroPaginas">
+  <rdfs:domain rdf:resource="#Livro"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#isbn">
+  <rdfs:domain rdf:resource="#Livro"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#descricao">
+  <rdfs:domain rdf:resource="#Publicacao"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Publicacao">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Livro">
+  <rdfs:subClassOf rdf:resource="#Publicacao"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#temFormato"/>
+      <owl:someValuesFrom rdf:resource="#Formato"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#temAutor"/>
+      <owl:someValuesFrom rdf:resource="#Autor"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#abordaTema"/>
+      <owl:someValuesFrom rdf:resource="#Tema"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#publicadoPor"/>
+      <owl:someValuesFrom rdf:resource="#Editora"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#temNivel"/>
+      <owl:someValuesFrom rdf:resource="#Nivel"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#LivroTecnico">
+  <rdfs:subClassOf rdf:resource="#Livro"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Livro"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#abordaTema"/>
+          <owl:someValuesFrom rdf:resource="#TemaComputacao"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <owl:disjointWith rdf:resource="#LivroFiccao"/>
+</owl:Class>
+
+<owl:Class rdf:about="#LivroFiccao">
+  <rdfs:subClassOf rdf:resource="#Livro"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Livro"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#abordaTema"/>
+          <owl:someValuesFrom rdf:resource="#TemaLiteratura"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#LivroIntrodutorio">
+  <rdfs:subClassOf rdf:resource="#Livro"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Livro"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#temNivel"/>
+          <owl:someValuesFrom rdf:resource="#NivelBasico"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#LivroAvancado">
+  <rdfs:subClassOf rdf:resource="#Livro"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Livro"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#temNivel"/>
+          <owl:someValuesFrom rdf:resource="#NivelAvancado"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#LivroDigital">
+  <rdfs:subClassOf rdf:resource="#Livro"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Livro"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#temFormato"/>
+          <owl:someValuesFrom rdf:resource="#FormatoDigital"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#LivroFisico">
+  <rdfs:subClassOf rdf:resource="#Livro"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Livro"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#temFormato"/>
+          <owl:someValuesFrom rdf:resource="#FormatoFisico"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#LivroIA">
+  <rdfs:subClassOf rdf:resource="#LivroTecnico"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Livro"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#abordaTema"/>
+          <owl:someValuesFrom rdf:resource="#TemaIA"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#LivroIntrodutorioIA">
+  <rdfs:subClassOf rdf:resource="#LivroIA"/>
+  <rdfs:subClassOf rdf:resource="#LivroIntrodutorio"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#LivroIA"/>
+        <rdf:Description rdf:about="#LivroIntrodutorio"/>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#Autor">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Leitor">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Tema">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TemaComputacao">
+  <rdfs:subClassOf rdf:resource="#Tema"/>
+  <owl:disjointWith rdf:resource="#TemaLiteratura"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TemaIA">
+  <rdfs:subClassOf rdf:resource="#TemaComputacao"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TemaProgramacao">
+  <rdfs:subClassOf rdf:resource="#TemaComputacao"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TemaLiteratura">
+  <rdfs:subClassOf rdf:resource="#Tema"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Nivel">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#NivelBasico">
+  <rdfs:subClassOf rdf:resource="#Nivel"/>
+  <owl:disjointWith rdf:resource="#NivelAvancado"/>
+</owl:Class>
+
+<owl:Class rdf:about="#NivelAvancado">
+  <rdfs:subClassOf rdf:resource="#Nivel"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Formato">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#FormatoDigital">
+  <rdfs:subClassOf rdf:resource="#Formato"/>
+  <owl:disjointWith rdf:resource="#FormatoFisico"/>
+</owl:Class>
+
+<owl:Class rdf:about="#FormatoFisico">
+  <rdfs:subClassOf rdf:resource="#Formato"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Editora">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#computacao">
+  <rdf:type rdf:resource="#TemaComputacao"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Computação</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inteligencia_artificial">
+  <rdf:type rdf:resource="#TemaIA"/>
+  <subTemaDe rdf:resource="#computacao"/>
+  <relacionadoA rdf:resource="#programacao"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Inteligência artificial</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aprendizado_maquina">
+  <rdf:type rdf:resource="#TemaIA"/>
+  <subTemaDe rdf:resource="#inteligencia_artificial"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aprendizado de máquina</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#pln">
+  <rdf:type rdf:resource="#TemaIA"/>
+  <subTemaDe rdf:resource="#aprendizado_maquina"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Processamento de linguagem natural</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#programacao">
+  <rdf:type rdf:resource="#TemaProgramacao"/>
+  <subTemaDe rdf:resource="#computacao"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Programação</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#literatura">
+  <rdf:type rdf:resource="#TemaLiteratura"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Literatura</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#basico">
+  <rdf:type rdf:resource="#NivelBasico"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Básico</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#avancado">
+  <rdf:type rdf:resource="#NivelAvancado"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Avançado</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#digital">
+  <rdf:type rdf:resource="#FormatoDigital"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Digital</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#fisico">
+  <rdf:type rdf:resource="#FormatoFisico"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Físico</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#autor_1">
+  <rdf:type rdf:resource="#Autor"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ana Prado</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#autor_2">
+  <rdf:type rdf:resource="#Autor"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bruno Reis</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#autor_3">
+  <rdf:type rdf:resource="#Autor"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clara Luz</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#autor_4">
+  <rdf:type rdf:resource="#Autor"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Davi Melo</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#editora_1">
+  <rdf:type rdf:resource="#Editora"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Editora Horizonte Didático</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#editora_2">
+  <rdf:type rdf:resource="#Editora"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Editora Trilhas do Saber</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#livro_1">
+  <rdf:type rdf:resource="#Livro"/>
+  <abordaTema rdf:resource="#inteligencia_artificial"/>
+  <temNivel rdf:resource="#basico"/>
+  <temFormato rdf:resource="#digital"/>
+  <temAutor rdf:resource="#autor_1"/>
+  <publicadoPor rdf:resource="#editora_1"/>
+  <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Primeiros passos em inteligência artificial</titulo>
+  <anoPublicacao rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2024</anoPublicacao>
+  <idioma rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pt-BR</idioma>
+  <numeroPaginas rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">180</numeroPaginas>
+  <isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FICT-001</isbn>
+  <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obra fictícia para estudo de inteligência artificial.</descricao>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#livro_2">
+  <rdf:type rdf:resource="#Livro"/>
+  <abordaTema rdf:resource="#pln"/>
+  <temNivel rdf:resource="#basico"/>
+  <temFormato rdf:resource="#digital"/>
+  <temAutor rdf:resource="#autor_2"/>
+  <publicadoPor rdf:resource="#editora_2"/>
+  <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Linguagem natural para iniciantes</titulo>
+  <anoPublicacao rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2025</anoPublicacao>
+  <idioma rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pt-BR</idioma>
+  <numeroPaginas rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">210</numeroPaginas>
+  <isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FICT-002</isbn>
+  <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obra fictícia para estudo de processamento de linguagem natural.</descricao>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#livro_3">
+  <rdf:type rdf:resource="#Livro"/>
+  <abordaTema rdf:resource="#aprendizado_maquina"/>
+  <temNivel rdf:resource="#avancado"/>
+  <temFormato rdf:resource="#digital"/>
+  <temAutor rdf:resource="#autor_3"/>
+  <publicadoPor rdf:resource="#editora_1"/>
+  <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aprendizado de máquina em profundidade</titulo>
+  <anoPublicacao rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2026</anoPublicacao>
+  <idioma rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pt-BR</idioma>
+  <numeroPaginas rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">420</numeroPaginas>
+  <isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FICT-003</isbn>
+  <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obra fictícia para estudo de aprendizado de máquina.</descricao>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#livro_4">
+  <rdf:type rdf:resource="#Livro"/>
+  <abordaTema rdf:resource="#inteligencia_artificial"/>
+  <temNivel rdf:resource="#basico"/>
+  <temFormato rdf:resource="#fisico"/>
+  <temAutor rdf:resource="#autor_4"/>
+  <publicadoPor rdf:resource="#editora_2"/>
+  <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Inteligência artificial no papel</titulo>
+  <anoPublicacao rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2024</anoPublicacao>
+  <idioma rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pt-BR</idioma>
+  <numeroPaginas rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</numeroPaginas>
+  <isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FICT-004</isbn>
+  <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obra fictícia para estudo de inteligência artificial.</descricao>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#livro_5">
+  <rdf:type rdf:resource="#Livro"/>
+  <abordaTema rdf:resource="#programacao"/>
+  <temNivel rdf:resource="#basico"/>
+  <temFormato rdf:resource="#digital"/>
+  <temAutor rdf:resource="#autor_1"/>
+  <publicadoPor rdf:resource="#editora_1"/>
+  <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Programação desde o começo</titulo>
+  <anoPublicacao rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2025</anoPublicacao>
+  <idioma rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pt-BR</idioma>
+  <numeroPaginas rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">240</numeroPaginas>
+  <isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FICT-005</isbn>
+  <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obra fictícia para estudo de programação.</descricao>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#livro_6">
+  <rdf:type rdf:resource="#Livro"/>
+  <abordaTema rdf:resource="#programacao"/>
+  <temNivel rdf:resource="#avancado"/>
+  <temFormato rdf:resource="#fisico"/>
+  <temAutor rdf:resource="#autor_2"/>
+  <publicadoPor rdf:resource="#editora_2"/>
+  <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Algoritmos e programação avançada</titulo>
+  <anoPublicacao rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2026</anoPublicacao>
+  <idioma rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pt-BR</idioma>
+  <numeroPaginas rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">380</numeroPaginas>
+  <isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FICT-006</isbn>
+  <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obra fictícia para estudo de programação.</descricao>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#livro_7">
+  <rdf:type rdf:resource="#Livro"/>
+  <abordaTema rdf:resource="#literatura"/>
+  <temNivel rdf:resource="#basico"/>
+  <temFormato rdf:resource="#fisico"/>
+  <temAutor rdf:resource="#autor_3"/>
+  <publicadoPor rdf:resource="#editora_1"/>
+  <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contos da biblioteca azul</titulo>
+  <anoPublicacao rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2024</anoPublicacao>
+  <idioma rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pt-BR</idioma>
+  <numeroPaginas rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">160</numeroPaginas>
+  <isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FICT-007</isbn>
+  <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obra fictícia para estudo de literatura.</descricao>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#livro_8">
+  <rdf:type rdf:resource="#Livro"/>
+  <abordaTema rdf:resource="#literatura"/>
+  <temNivel rdf:resource="#avancado"/>
+  <temFormato rdf:resource="#digital"/>
+  <temAutor rdf:resource="#autor_4"/>
+  <publicadoPor rdf:resource="#editora_2"/>
+  <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Narrativas e labirintos</titulo>
+  <anoPublicacao rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2025</anoPublicacao>
+  <idioma rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pt-BR</idioma>
+  <numeroPaginas rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">290</numeroPaginas>
+  <isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FICT-008</isbn>
+  <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obra fictícia para estudo de literatura.</descricao>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#leitora_ana">
+  <rdf:type rdf:resource="#Leitor"/>
+  <prefereTema rdf:resource="#inteligencia_artificial"/>
+  <prefereNivel rdf:resource="#basico"/>
+  <prefereFormato rdf:resource="#digital"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ana, perfil ilustrativo</nome>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#leitor_caio">
+  <rdf:type rdf:resource="#Leitor"/>
+  <prefereTema rdf:resource="#programacao"/>
+  <prefereNivel rdf:resource="#avancado"/>
+  <prefereFormato rdf:resource="#fisico"/>
+  <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Caio, perfil ilustrativo</nome>
+</owl:NamedIndividual>
+
+<owl:AllDisjointClasses>
+  <owl:members rdf:parseType="Collection">
+    <rdf:Description rdf:about="#Publicacao"/>
+    <rdf:Description rdf:about="#Autor"/>
+    <rdf:Description rdf:about="#Leitor"/>
+    <rdf:Description rdf:about="#Tema"/>
+    <rdf:Description rdf:about="#Nivel"/>
+    <rdf:Description rdf:about="#Formato"/>
+    <rdf:Description rdf:about="#Editora"/>
+  </owl:members>
+</owl:AllDisjointClasses>
+
+
+</rdf:RDF>
