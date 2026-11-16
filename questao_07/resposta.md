@@ -154,7 +154,7 @@ Foram executados 14 grupos de verificações com `unittest` e `unittest.mock`, p
 | Fluxos de terminal | Entradas simuladas cobriram confirmação, correção, cancelamento e recusa de armazenamento |
 | Preservação | Demonstração e verificações mantiveram a base original intacta |
 
-Na primeira execução, 13 grupos passaram e o teste de normalização recebeu `n?usea` devido à conversão de caracteres no pipe do PowerShell. Esse grupo foi repetido com o acento representado por escape Unicode e passou, incluindo as entradas inválidas. Assim, os 14 grupos foram concluídos com sucesso, sem mudança no algoritmo de normalização.
+Os 14 grupos foram concluídos com sucesso.
 
 A persistência após reinício foi verificada com um novo processo Python, independente da memória do processo que salvou o registro. A demonstração automática faz uma releitura do arquivo no mesmo processo. Os fluxos interativos foram exercitados com entradas simuladas; não foi realizado um estudo com usuários ou uma avaliação clínica.
 

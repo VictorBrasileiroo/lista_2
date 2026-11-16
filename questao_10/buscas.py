@@ -10,6 +10,7 @@ from collections import deque
 from dataclasses import dataclass, field
 import heapq
 from math import inf
+import sys
 
 
 ARESTAS = (
@@ -256,4 +257,6 @@ def apresentar_resultados():
 
 
 if __name__ == "__main__":
+    # Evita UnicodeEncodeError com "→" em consoles e pipes cp1252 do Windows.
+    sys.stdout.reconfigure(encoding="utf-8")
     apresentar_resultados()

@@ -6,7 +6,7 @@ Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
 O sistema estima a probabilidade de gripe em um modelo educacional a partir de exposição recente e sintomas observados. A rede bayesiana representa as dependências por um grafo direcionado acíclico e associa uma distribuição de probabilidade a cada variável. Assim, é possível atualizar a distribuição de gripe quando novas evidências são informadas, mantendo explícita a incerteza.
 
-Todas as probabilidades foram fornecidas no enunciado como parâmetros hipotéticos. Os resultados demonstram inferência probabilística e não constituem diagnóstico médico nem estimativas clínicas validadas.
+Todas as probabilidades são parâmetros hipotéticos definidos pela equipe para fins educacionais, justificados na seção 4. Os resultados demonstram inferência probabilística e não constituem diagnóstico médico nem estimativas clínicas validadas.
 
 ## 2. Domínio e variáveis
 
@@ -41,6 +41,16 @@ Essa independência condicional simplifica a representação e reduz o número d
 ## 4. Tabelas de probabilidades
 
 As CPTs usam explicitamente a ordem Não, Sim nas linhas e nos estados dos pais. Cada coluna soma 1. A escolha dos valores torna a exposição favorável à gripe e os sintomas mais prováveis na presença da doença, sem tornar nenhuma relação determinística. São escolhas plausíveis apenas para a demonstração, sem origem em estudos médicos.
+
+Justificativa dos valores, definidos em ordem de grandeza plausível e sem pretensão de precisão clínica:
+
+- **Exposição, 0,20**: supõe-se um período sazonal em que cerca de um em cada cinco pacientes relata contato recente com alguém doente.
+- **Gripe, 0,30 com exposição e 0,05 sem ela**: a exposição multiplica o risco por seis, mas sua ausência não zera a chance, pois o contágio pode ocorrer sem que o paciente perceba. Esses valores resultam em prevalência de 10% na população atendida.
+- **Febre, 0,85 com gripe e 0,15 sem gripe**: é um dos sinais mais característicos da gripe, mas também acompanha outras infecções agrupadas em Gripe=Não. É o sintoma mais discriminativo do modelo.
+- **Tosse, 0,80 com gripe e 0,35 sem gripe**: é frequente na gripe, mas também comum em resfriados, alergias e outras condições respiratórias, sendo menos discriminativa que a febre.
+- **Dor muscular, 0,75 com gripe e 0,20 sem gripe**: é típica do quadro gripal e menos frequente em resfriados, ocupando posição intermediária.
+
+A razão entre as probabilidades com e sem gripe, cerca de 5,7 para febre, 2,3 para tosse e 3,75 para dor muscular, resume o peso diagnóstico de cada sintoma e explica a ordem das atualizações observadas na seção 6.
 
 ### Exposição recente
 
@@ -147,9 +157,9 @@ A demo foi executada com Python 3.13.12, pgmpy 1.1.2, NetworkX 3.7, Matplotlib 3
 7. Rejeição de dez entradas inválidas, incluindo variável desconhecida, estado inválido, Gripe como evidência, formatos incorretos, repetições e contradições.
 8. Independências condicionais dos sintomas por d-separação. O grafo usado para desenhar a imagem é comparado com os nós e as arestas do modelo.
 
-Também foram conferidos os percentuais do relatório e da apresentação contra as nove consultas executadas. A estrutura do HTML tem cinco slides e recursos locais; a lógica de navegação foi executada em Node.js com um DOM simulado, incluindo botões, setas, Home, End e fragmentos de URL. O diagrama foi inspecionado como imagem. A revisão visual dos slides em um navegador não pôde ser concluída: a conexão de abas estava indisponível e o acesso à janela expirou aguardando aprovação. Portanto, o teste da navegação não substitui uma inspeção visual no navegador.
+Também foram conferidos os percentuais do relatório e da apresentação contra as nove consultas executadas. A estrutura do HTML tem cinco slides e recursos locais; a lógica de navegação foi executada em Node.js com um DOM simulado, incluindo botões, setas, Home, End e fragmentos de URL. O diagrama foi inspecionado como imagem. A aparência dos slides deve ser conferida em um navegador antes da apresentação, pois o teste da navegação não substitui essa inspeção visual.
 
-Essas verificações avaliam consistência e reprodução computacional. Não avaliam validade clínica ou acurácia diagnóstica. O pgmpy emitiu um FutureWarning interno sobre StructureScore, recurso não utilizado pelo sistema; a demo concluiu normalmente. O ambiente temporário usado nos testes foi removido após a validação; para executar novamente, é necessário instalar as dependências de `requirements.txt` em um ambiente Python.
+Essas verificações avaliam consistência e reprodução computacional. Não avaliam validade clínica ou acurácia diagnóstica. O pgmpy emitiu um FutureWarning interno sobre StructureScore, recurso não utilizado pelo sistema; a demo concluiu normalmente. Em 16/11/2026, a demo foi reexecutada com Python 3.14.7 e pgmpy 1.1.2, reproduzindo todos os percentuais. O ambiente temporário usado nos testes foi removido após a validação; para executar novamente, é necessário instalar as dependências de `requirements.txt` em um ambiente Python.
 
 ## 7. Discussão e limitações
 
@@ -159,7 +169,7 @@ Os resultados dependem diretamente das CPTs. Probabilidades hipotéticas diferen
 
 O domínio binário não contempla gravidade, tempo de evolução, incerteza na observação, exames ou diagnósticos alternativos. O modelo não foi treinado com dados, não foi comparado com casos clínicos e não possui validação clínica. Portanto, os valores calculados não devem orientar decisões médicas.
 
-Possíveis melhorias incluem estimar CPTs com dados confiáveis e representativos, avaliar calibração e sensibilidade e revisar as dependências com especialistas. Fatores adicionais e outras doenças poderiam ser incluídos em uma versão futura, com validação adequada. Esta versão mantém exclusivamente as cinco variáveis exigidas.
+Possíveis melhorias incluem estimar CPTs com dados confiáveis e representativos, avaliar calibração e sensibilidade e revisar as dependências com especialistas. Fatores adicionais e outras doenças poderiam ser incluídos em uma versão futura, com validação adequada. Esta versão se limita ao mínimo de cinco variáveis pedido no enunciado.
 
 ## 8. Execução e demonstração
 

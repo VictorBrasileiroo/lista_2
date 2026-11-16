@@ -22,13 +22,13 @@ Enunciado: [Lista 2](https://github.com/VictorBrasileiroo/lista_2/blob/main/docs
 6. [Questão 6: Sistema de inferência fuzzy com Mamdani](#questao-06)
 7. [Questão 7: Sistema de Apoio ao Diagnóstico Médico Baseado em Casos](#questao-07)
 8. [Questão 8: Sistema de diagnóstico médico com redes bayesianas](#questao-08)
-9. [Questão 9: recomendação educacional de livros com OWL 2](#questao-09)
-10. [Questão 10: planejamento de rotas com algoritmos de busca](#questao-10)
-11. [Questão 11: agentes inteligentes clássicos e agentes baseados em LLMs](#questao-11)
-12. [Questão 12: agente de planejamento acadêmico baseado em LLM](#questao-12)
+9. [Questão 9: Recomendação educacional de livros com OWL 2](#questao-09)
+10. [Questão 10: Planejamento de rotas com algoritmos de busca](#questao-10)
+11. [Questão 11: Agentes inteligentes clássicos e agentes baseados em LLMs](#questao-11)
+12. [Questão 12: Agente de planejamento acadêmico baseado em LLM](#questao-12)
 13. [Questão 13: Ensaio sobre a arquitetura Transformer](#questao-13)
 14. [Questão 14: Knowledge Graphs, representação, inferência e aprendizagem](#questao-14)
-15. [Questão 15: ontologia OWL 2 com inferência automática](#questao-15)
+15. [Questão 15: Ontologia OWL 2 com inferência automática](#questao-15)
 
 ---
 
@@ -52,6 +52,10 @@ As duas abordagens não são mutuamente exclusivas. Uma ontologia pode fornecer 
 | No catálogo | Define o significado de Livro, Autor e Tema e suas relações. | Registra que LivroPython foi escrito por Ana e aborda Programacao. |
 | Organização | Classes, hierarquias e propriedades com semântica definida. | Nós e relações; em RDF, conjuntos de triplas. |
 | Raciocínio | Os axiomas permitem estabelecer consequências lógicas, conforme a linguagem utilizada. | Os fatos podem ser consultados e ampliados com inferências quando associados a uma semântica apropriada. |
+| Hipótese de mundo | Em OWL, vale a hipótese de mundo aberto: a ausência de um fato não implica sua negação. | Em bancos de grafos, consultas costumam operar sob mundo fechado: o que não está armazenado é tratado como inexistente. |
+| Esquema | Exige modelagem conceitual prévia, com classes e axiomas definidos antes dos dados. | O esquema pode evoluir de forma incremental, à medida que novos tipos de entidades e relações são incorporados. |
+| Linguagens e ferramentas | OWL 2, editores como Protégé e reasoners como HermiT e Pellet. | RDF com SPARQL ou grafos de propriedades com Cypher, em sistemas como Neo4j. |
+| Escala e uso típico | Domínios especializados com vocabulário controlado, como Gene Ontology e SNOMED CT. | Grandes coleções de fatos interligados, como Wikidata e o Google Knowledge Graph. |
 | Complementaridade | Oferece uma estrutura conceitual compartilhada para os dados. | Representa os fatos usando essa estrutura, podendo incluir também o esquema. |
 
 A diferença está na ênfase de cada abordagem. Uma ontologia também pode conter indivíduos, e um grafo pode conter definições de classes e propriedades (W3C, 2012). A distinção entre esquema e fatos ajuda a explicar o exemplo, mas não exige separar as tecnologias.
@@ -274,7 +278,7 @@ A validação confirmou a quantidade de instâncias e sua distribuição por cla
 
 Embora E1 tenha sido classificada corretamente, o Leave-One-Out apresentou mais erros do que acertos. Nesta configuração, instâncias próximas pelos atributos nem sempre possuem a mesma classe. E3, por exemplo, tem E2, E17 e E5 como vizinhos, com classes Alto, Moderado e Baixo e distâncias 1, 1 e 2. Cada classe recebe um voto; Alto e Moderado empatam também na soma das distâncias. A ordem alfabética define a previsão Alto, diferente da classe real Moderado.
 
-Há poucos valores possíveis para a distância, o que favorece empates. O desempate pelo número da instância torna a seleção reproduzível, mas esse número não expressa semelhança entre os casos. Além disso, a distância adotada atribui o mesmo peso a todos os atributos e desconsidera a ordem das faixas de renda e dos níveis de comprometimento. K = 3 foi fixado conforme a proposta, sem buscar um valor que maximize os acertos.
+Há poucos valores possíveis para a distância, o que favorece empates. O desempate pelo número da instância torna a seleção reproduzível, mas esse número não expressa semelhança entre os casos. Além disso, a distância adotada atribui o mesmo peso a todos os atributos e desconsidera a ordem das faixas de renda e dos níveis de comprometimento. K = 3 foi fixado previamente, por ser um valor ímpar pequeno, sem buscar um valor que maximize os acertos.
 
 A base é pequena e foi construída para fins didáticos. A acurácia de 36,67% descreve somente as previsões obtidas nessas 30 instâncias com as regras adotadas. Ela não deve ser tratada como uma medida confiável do desempenho em casos reais de risco de crédito.
 
@@ -770,7 +774,7 @@ No código, as entradas são objetos `Antecedent` e a saída é um `Consequent`.
 
 ### 3. Funções de pertinência e fuzzificação
 
-Foram mantidos os parâmetros propostos. Os conjuntos centrais são triangulares, definidos por `trimf([a, b, c])`, e os conjuntos extremos são trapezoidais, definidos por `trapmf([a, b, c, d])`.
+Os conjuntos centrais são triangulares, definidos por `trimf([a, b, c])`, e os conjuntos extremos são trapezoidais, definidos por `trapmf([a, b, c, d])`.
 
 Na função triangular, a pertinência vale zero fora de [a, c], cresce linearmente até 1 em b e decresce até zero em c. Na trapezoidal, a pertinência cresce de a até b, permanece em 1 entre b e c e decresce até zero em d. Vértices repetidos nas extremidades representam ombros: por exemplo, [0, 0, 15, 22] possui pertinência 1 desde 0 até 15.
 
@@ -944,8 +948,6 @@ O arquivo de dependências inclui Scikit-Fuzzy, NumPy, SciPy, NetworkX e Matplot
 
 [Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_07) | [casos.json](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_07/casos.json) | [sistema_rbc.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_07/sistema_rbc.py)
 
-Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
-
 ### 1. Introdução
 
 O protótipo recebe sintomas, compara a consulta com uma base artificial e apresenta uma hipótese educacional acompanhada de uma orientação ilustrativa. Um operador pode confirmar, corrigir ou rejeitar essa hipótese antes de decidir se deseja armazenar um novo caso.
@@ -1098,7 +1100,7 @@ Foram executados 14 grupos de verificações com `unittest` e `unittest.mock`, p
 | Fluxos de terminal | Entradas simuladas cobriram confirmação, correção, cancelamento e recusa de armazenamento |
 | Preservação | Demonstração e verificações mantiveram a base original intacta |
 
-Na primeira execução, 13 grupos passaram e o teste de normalização recebeu `n?usea` devido à conversão de caracteres no pipe do PowerShell. Esse grupo foi repetido com o acento representado por escape Unicode e passou, incluindo as entradas inválidas. Assim, os 14 grupos foram concluídos com sucesso, sem mudança no algoritmo de normalização.
+Os 14 grupos foram concluídos com sucesso.
 
 A persistência após reinício foi verificada com um novo processo Python, independente da memória do processo que salvou o registro. A demonstração automática faz uma releitura do arquivo no mesmo processo. Os fluxos interativos foram exercitados com entradas simuladas; não foi realizado um estudo com usuários ou uma avaliação clínica.
 
@@ -1168,13 +1170,11 @@ Enunciado da Questão 7 da Lista 2 de Inteligência Artificial, 2026.2, professo
 
 [Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_08) | [apresentacao.html](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/apresentacao.html) | [modelo.bif](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/modelo.bif) | [rede.png](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/rede.png) | [rede_bayesiana.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/rede_bayesiana.py) | [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_08/requirements.txt)
 
-Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
-
 ### 1. Introdução
 
 O sistema estima a probabilidade de gripe em um modelo educacional a partir de exposição recente e sintomas observados. A rede bayesiana representa as dependências por um grafo direcionado acíclico e associa uma distribuição de probabilidade a cada variável. Assim, é possível atualizar a distribuição de gripe quando novas evidências são informadas, mantendo explícita a incerteza.
 
-Todas as probabilidades foram fornecidas no enunciado como parâmetros hipotéticos. Os resultados demonstram inferência probabilística e não constituem diagnóstico médico nem estimativas clínicas validadas.
+Todas as probabilidades são parâmetros hipotéticos definidos pela equipe para fins educacionais, justificados na seção 4. Os resultados demonstram inferência probabilística e não constituem diagnóstico médico nem estimativas clínicas validadas.
 
 ### 2. Domínio e variáveis
 
@@ -1209,6 +1209,16 @@ Essa independência condicional simplifica a representação e reduz o número d
 ### 4. Tabelas de probabilidades
 
 As CPTs usam explicitamente a ordem Não, Sim nas linhas e nos estados dos pais. Cada coluna soma 1. A escolha dos valores torna a exposição favorável à gripe e os sintomas mais prováveis na presença da doença, sem tornar nenhuma relação determinística. São escolhas plausíveis apenas para a demonstração, sem origem em estudos médicos.
+
+Justificativa dos valores, definidos em ordem de grandeza plausível e sem pretensão de precisão clínica:
+
+- **Exposição, 0,20**: supõe-se um período sazonal em que cerca de um em cada cinco pacientes relata contato recente com alguém doente.
+- **Gripe, 0,30 com exposição e 0,05 sem ela**: a exposição multiplica o risco por seis, mas sua ausência não zera a chance, pois o contágio pode ocorrer sem que o paciente perceba. Esses valores resultam em prevalência de 10% na população atendida.
+- **Febre, 0,85 com gripe e 0,15 sem gripe**: é um dos sinais mais característicos da gripe, mas também acompanha outras infecções agrupadas em Gripe=Não. É o sintoma mais discriminativo do modelo.
+- **Tosse, 0,80 com gripe e 0,35 sem gripe**: é frequente na gripe, mas também comum em resfriados, alergias e outras condições respiratórias, sendo menos discriminativa que a febre.
+- **Dor muscular, 0,75 com gripe e 0,20 sem gripe**: é típica do quadro gripal e menos frequente em resfriados, ocupando posição intermediária.
+
+A razão entre as probabilidades com e sem gripe, cerca de 5,7 para febre, 2,3 para tosse e 3,75 para dor muscular, resume o peso diagnóstico de cada sintoma e explica a ordem das atualizações observadas na seção 6.
 
 #### Exposição recente
 
@@ -1315,9 +1325,9 @@ A demo foi executada com Python 3.13.12, pgmpy 1.1.2, NetworkX 3.7, Matplotlib 3
 7. Rejeição de dez entradas inválidas, incluindo variável desconhecida, estado inválido, Gripe como evidência, formatos incorretos, repetições e contradições.
 8. Independências condicionais dos sintomas por d-separação. O grafo usado para desenhar a imagem é comparado com os nós e as arestas do modelo.
 
-Também foram conferidos os percentuais do relatório e da apresentação contra as nove consultas executadas. A estrutura do HTML tem cinco slides e recursos locais; a lógica de navegação foi executada em Node.js com um DOM simulado, incluindo botões, setas, Home, End e fragmentos de URL. O diagrama foi inspecionado como imagem. A revisão visual dos slides em um navegador não pôde ser concluída: a conexão de abas estava indisponível e o acesso à janela expirou aguardando aprovação. Portanto, o teste da navegação não substitui uma inspeção visual no navegador.
+Também foram conferidos os percentuais do relatório e da apresentação contra as nove consultas executadas. A estrutura do HTML tem cinco slides e recursos locais; a lógica de navegação foi executada em Node.js com um DOM simulado, incluindo botões, setas, Home, End e fragmentos de URL. O diagrama foi inspecionado como imagem. A aparência dos slides deve ser conferida em um navegador antes da apresentação, pois o teste da navegação não substitui essa inspeção visual.
 
-Essas verificações avaliam consistência e reprodução computacional. Não avaliam validade clínica ou acurácia diagnóstica. O pgmpy emitiu um FutureWarning interno sobre StructureScore, recurso não utilizado pelo sistema; a demo concluiu normalmente. O ambiente temporário usado nos testes foi removido após a validação; para executar novamente, é necessário instalar as dependências de `requirements.txt` em um ambiente Python.
+Essas verificações avaliam consistência e reprodução computacional. Não avaliam validade clínica ou acurácia diagnóstica. O pgmpy emitiu um FutureWarning interno sobre StructureScore, recurso não utilizado pelo sistema; a demo concluiu normalmente. Em 16/11/2026, a demo foi reexecutada com Python 3.14.7 e pgmpy 1.1.2, reproduzindo todos os percentuais. O ambiente temporário usado nos testes foi removido após a validação; para executar novamente, é necessário instalar as dependências de `requirements.txt` em um ambiente Python.
 
 ### 7. Discussão e limitações
 
@@ -1327,7 +1337,7 @@ Os resultados dependem diretamente das CPTs. Probabilidades hipotéticas diferen
 
 O domínio binário não contempla gravidade, tempo de evolução, incerteza na observação, exames ou diagnósticos alternativos. O modelo não foi treinado com dados, não foi comparado com casos clínicos e não possui validação clínica. Portanto, os valores calculados não devem orientar decisões médicas.
 
-Possíveis melhorias incluem estimar CPTs com dados confiáveis e representativos, avaliar calibração e sensibilidade e revisar as dependências com especialistas. Fatores adicionais e outras doenças poderiam ser incluídos em uma versão futura, com validação adequada. Esta versão mantém exclusivamente as cinco variáveis exigidas.
+Possíveis melhorias incluem estimar CPTs com dados confiáveis e representativos, avaliar calibração e sensibilidade e revisar as dependências com especialistas. Fatores adicionais e outras doenças poderiam ser incluídos em uma versão futura, com validação adequada. Esta versão se limita ao mínimo de cinco variáveis pedido no enunciado.
 
 ### 8. Execução e demonstração
 
@@ -1371,7 +1381,7 @@ As referências fundamentam os conceitos e a utilização da biblioteca; nenhuma
 
 <a id="questao-09"></a>
 
-## Questão 9: recomendação educacional de livros com OWL 2
+## Questão 9: Recomendação educacional de livros com OWL 2
 
 [Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_09) | [apresentacao.html](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/apresentacao.html) | [ontologia.owl](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/ontologia.owl) | [recomendador.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/recomendador.py) | [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_09/requirements.txt)
 
@@ -1429,7 +1439,7 @@ Thing
 └── Editora
 ```
 
-`LivroFisico` foi acrescentada à proposta para que ambos os formatos possam ser consultados por classes inferidas. Cada classe tem função na classificação, na tipagem das propriedades ou na consistência.
+`LivroFisico` foi incluída para que ambos os formatos possam ser consultados por classes inferidas. Cada classe tem função na classificação, na tipagem das propriedades ou na consistência.
 
 Classes de tema e indivíduos de tema cumprem papéis diferentes. `TemaIA` é uma classe; `inteligencia_artificial`, `aprendizado_maquina` e `pln` são indivíduos dessa classe. A inclusão de `TemaIA` em `TemaComputacao` representa uma hierarquia de categorias. Já `subTemaDe` organiza os assuntos concretos usados nos livros.
 
@@ -1507,7 +1517,7 @@ Todos os livros são inicialmente declarados apenas como `Livro`. Os tipos espec
 
 ### 5. Execução do HermiT e inferências obtidas
 
-A validação foi executada em Windows, com Python 3.13.12, Owlready2 0.51 e Microsoft OpenJDK 21.0.9. A documentação oficial consultada estava na versão 0.52; as APIs foram conferidas pela execução efetiva na versão fixada 0.51.
+A validação foi executada em Windows, com Python 3.13.12, Owlready2 0.51 e Microsoft OpenJDK 21.0.9. A documentação oficial consultada estava na versão 0.52; as APIs foram conferidas pela execução efetiva na versão fixada 0.51. Em 16/11/2026, a demonstração foi reexecutada com Python 3.14.7 e Microsoft OpenJDK 21.0.13, com os mesmos resultados.
 
 O programa configura o executável Java a partir de `JAVA_EXE` ou do `PATH` e chama:
 
@@ -1671,7 +1681,7 @@ $env:JAVA_EXE = 'C:\Program Files\Microsoft\jdk-21.0.9.10-hotspot\bin\java.exe'
 python recomendador.py --demo
 ```
 
-Na validação deste trabalho, o download inicial foi bloqueado pelas permissões de rede do ambiente de execução. Após autorizar a instalação, o empacotamento do Owlready2 também encontrou o limite de caminhos longos do Windows. A solução foi extrair a distribuição oficial 0.51 em uma pasta temporária curta e instalar a partir dela. Não foi alterado o código do pacote. A dependência foi instalada fora do repositório e usada via `PYTHONPATH`, preservando o ambiente das outras questões. Em instalações Windows com o mesmo erro, extraia o pacote oficial em um caminho curto e execute `python -m pip install CAMINHO_DA_PASTA_EXTRAIDA`. A leitura do OWL usa `fileobj` para evitar o problema de conversão de URI local observado no Owlready2 0.51 no Windows.
+Em algumas instalações Windows, o empacotamento do Owlready2 pode esbarrar no limite de caminhos longos. Nesse caso, extraia o pacote oficial em um caminho curto e execute `python -m pip install CAMINHO_DA_PASTA_EXTRAIDA`. A leitura do OWL usa `fileobj` para evitar o problema de conversão de URI local observado no Owlready2 0.51 no Windows.
 
 #### Verificações efetivamente executadas
 
@@ -1714,7 +1724,7 @@ As restrições existenciais e o mundo aberto não substituem uma validação de
 
 <a id="questao-10"></a>
 
-## Questão 10: planejamento de rotas com algoritmos de busca
+## Questão 10: Planejamento de rotas com algoritmos de busca
 
 [Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_10) | [buscas.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_10/buscas.py)
 
@@ -1929,7 +1939,7 @@ A execução de validação foi realizada com Python 3.13.12, utilizando o ambie
 & '../.venv/Scripts/python.exe' -B buscas.py
 ```
 
-A opção `-B` evita gerar arquivos de bytecode. O comando terminou com código de saída 0, após executar as verificações internas, sem instalar dependências. Também foi consultado o diagnóstico do editor para o arquivo Python, que não apresentou erros.
+A opção `-B` evita gerar arquivos de bytecode. A saída é configurada explicitamente em UTF-8, para que as setas das rotas sejam exibidas também em consoles e redirecionamentos do Windows. O comando terminou com código de saída 0, após executar as verificações internas, sem instalar dependências. Também foi consultado o diagnóstico do editor para o arquivo Python, que não apresentou erros.
 
 As verificações efetivamente executadas foram:
 
@@ -1955,7 +1965,7 @@ RUSSELL, Stuart; NORVIG, Peter. Artificial Intelligence: A Modern Approach. 4. e
 
 <a id="questao-11"></a>
 
-## Questão 11: agentes inteligentes clássicos e agentes baseados em LLMs
+## Questão 11: Agentes inteligentes clássicos e agentes baseados em LLMs
 
 [Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_11)
 
@@ -2107,11 +2117,9 @@ YAO, Shunyu et al. ReAct: Synergizing Reasoning and Acting in Language Models. I
 
 <a id="questao-12"></a>
 
-## Questão 12: agente de planejamento acadêmico baseado em LLM
+## Questão 12: Agente de planejamento acadêmico baseado em LLM
 
 [Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_12) | [agente.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_12/agente.py) | [planejador.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_12/planejador.py) | [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_12/requirements.txt) | [test_planejador.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_12/test_planejador.py)
-
-Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
 ### 1. Introdução e objetivo
 
@@ -2119,7 +2127,7 @@ A aplicação recebe uma descrição de atividades acadêmicas em português e p
 
 O sistema combina interpretação por um modelo de linguagem com ferramentas locais de planejamento e verificação. O modelo transforma o texto em dados estruturados. A seleção das atividades, os cálculos de horários e a verificação das restrições são realizados em Python. Assim, a aplicação executa ações sobre uma representação do problema e produz uma resposta vinculada a essas ações.
 
-A versão atual usa a API do Gemini, conforme a escolha de utilizar uma chave de conta gratuita e dispensar a instalação de um modelo local. O programa e suas ferramentas continuam executados no computador do usuário; o texto da solicitação é enviado ao serviço Google para interpretação. A integração substitui a escolha inicial de Ollama, preservando o objetivo do enunciado.
+A aplicação usa a API do Gemini, que oferece uma faixa de uso gratuita e dispensa a instalação de um modelo local. O programa e suas ferramentas continuam executados no computador do usuário; o texto da solicitação é enviado ao serviço Google para interpretação.
 
 Foi implementado um agente com fluxo de controle predefinido. O programa decide quando chamar o extrator, solicitar esclarecimentos, executar o planejador e verificar a resposta. Não há escolha livre de ferramentas pelo modelo nem necessidade de um framework de agentes. A interface funciona no terminal e apenas propõe horários; nenhuma atividade é executada e nenhum evento é criado em calendários.
 
@@ -2350,7 +2358,7 @@ Ran 69 tests in 0.167s
 OK
 ```
 
-Esse tempo descreve somente a execução observada da suíte, sem inferência de modelo. Não representa uma medição de desempenho do agente com Gemini.
+Em 16/11/2026, a suíte foi reexecutada com Python 3.14.7, com os mesmos 69 testes aprovados. Esse tempo descreve somente a execução observada da suíte, sem inferência de modelo. Não representa uma medição de desempenho do agente com Gemini.
 
 | Grupo | Quantidade | Resultado | O que verifica |
 |---|---:|---|---|
@@ -2395,9 +2403,7 @@ O campo de data não estava disponível e não foi estimado. O modelo retornou J
 | Agenda e explicação apresentadas | Confirmadas, com B pendente |
 | Limites e faturamento do projeto | Não auditados; as requisições foram aceitas |
 
-A tentativa inicial dentro do ambiente isolado não alcançou a API. As duas execuções com inferência foram feitas fora dessa restrição de rede. Isso é diferente das falhas anteriores por ausência de chave ou indisponibilidade de Ollama, que não foram consideradas evidência de execução real.
-
-O HTTP 400 relatado no terminal do usuário não foi reproduzido com a chave do `.env` nas execuções observadas. Portanto, sua causa exata não foi confirmada. O arquivo preenchido passou a ter preferência sobre variáveis antigas do terminal, e os erros agora preservam o detalhe útil retornado pela API, com credenciais ocultadas, para permitir identificar a causa caso ocorra novamente.
+Em caso de erro HTTP, o programa preserva o detalhe útil retornado pela API, com credenciais ocultadas, para permitir identificar a causa.
 
 ### 9. Limitações
 
@@ -2417,7 +2423,7 @@ Não há persistência das atividades, execução das tarefas, integração com 
 
 Utilize uma chave de API do [Google AI Studio](https://aistudio.google.com/apikey), associada a um projeto com acesso gratuito disponível. Não é necessário instalar Ollama, baixar modelos ou instalar o SDK do Google.
 
-Abra `questao_12/.env` e preencha a linha `GEMINI_API_KEY=` com sua chave. O arquivo já foi criado com essa linha vazia e com o modelo padrão. Exemplo de formato, usando somente um marcador fictício:
+Crie o arquivo `questao_12/.env`, que não é versionado, com o conteúdo abaixo, substituindo o marcador pela sua chave:
 
 ```dotenv
 GEMINI_API_KEY=SUA_CHAVE_AQUI
@@ -2627,6 +2633,8 @@ O Transformer converte tokens e posições em vetores que são contextualizados 
 
 ### 9. Referências
 
+Vídeo recomendado no enunciado da questão como ponto de partida para o funcionamento da arquitetura. YouTube. Disponível em: [youtu.be/bVVm68KTD2M](https://youtu.be/bVVm68KTD2M).
+
 VASWANI, Ashish et al. Attention Is All You Need. In: Advances in Neural Information Processing Systems, v. 30, 2017. Disponível em: [artigo no arXiv](https://arxiv.org/abs/1706.03762). Acesso em: 12 nov. 2026.
 
 ALAMMAR, Jay. The Illustrated Transformer. 27 jun. 2018. Disponível em: [publicação do autor](https://jalammar.github.io/illustrated-transformer/). Acesso em: 12 nov. 2026.
@@ -2640,8 +2648,6 @@ JAIN, Sarthak; WALLACE, Byron C. Attention is not Explanation. In: Proceedings o
 ## Questão 14: Knowledge Graphs, representação, inferência e aprendizagem
 
 [Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_14)
-
-Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
 ### 1. Introdução
 
@@ -2836,11 +2842,9 @@ Na aplicação financeira, o exemplo demonstra como fatos de uso de dispositivos
 
 <a id="questao-15"></a>
 
-## Questão 15: ontologia OWL 2 com inferência automática
+## Questão 15: Ontologia OWL 2 com inferência automática
 
 [Pasta da questão](https://github.com/VictorBrasileiroo/lista_2/tree/main/questao_15) | [ontologia.owl](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_15/ontologia.owl) | [ontologia.py](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_15/ontologia.py) | [requirements.txt](https://github.com/VictorBrasileiroo/lista_2/blob/main/questao_15/requirements.txt)
-
-Lista 2 de Inteligência Artificial, 2026.2. Professor Evandro Costa.
 
 ### 1. Introdução
 
@@ -3026,7 +3030,7 @@ Ambiente efetivamente utilizado:
 | Java | Microsoft OpenJDK 21.0.9 LTS, build 21.0.9+10 |
 | HermiT incluído no Owlready2 | `Implementation-Version: 1.3.8.1099`, conforme manifesto do JAR |
 
-Foram executados a criação do ambiente local, a instalação do Owlready2, `pip check`, `java -version` e os três modos da CLI. O Python encontrado inicialmente no `PATH` era um atalho WindowsApps que falhou neste ambiente; por isso, o ambiente da questão foi criado usando o Python 3.13.12 disponível em `..\.venv\Scripts\python.exe`. A primeira tentativa de instalação foi bloqueada pela restrição de rede do sandbox, e a repetição com a autorização de execução do ambiente concluiu a instalação. Não houve falha do HermiT nos testes positivos ou negativos.
+Foram executados a criação do ambiente local, a instalação do Owlready2, `pip check`, `java -version` e os três modos da CLI. Não houve falha do HermiT nos testes positivos ou negativos. Em 16/11/2026, a demonstração e o teste negativo foram reexecutados com Python 3.14.7, Owlready2 0.51 e Microsoft OpenJDK 21.0.13, com os mesmos resultados.
 
 A demonstração e o teste negativo também foram executados com `-O`, a partir da raiz do repositório, com sucesso. Em uma verificação adicional do tratamento de falhas, a chamada ao reasoner foi substituída por uma função vazia apenas naquele processo de teste. A demonstração retornou código 1 por ausência das inferências esperadas, mesmo com `-O`. Esse teste controlado verifica a rejeição de resultados ausentes; as conclusões da tabela foram obtidas nas execuções reais do HermiT.
 

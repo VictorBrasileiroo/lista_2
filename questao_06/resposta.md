@@ -18,7 +18,7 @@ No código, as entradas são objetos `Antecedent` e a saída é um `Consequent`.
 
 ## 3. Funções de pertinência e fuzzificação
 
-Foram mantidos os parâmetros propostos. Os conjuntos centrais são triangulares, definidos por `trimf([a, b, c])`, e os conjuntos extremos são trapezoidais, definidos por `trapmf([a, b, c, d])`.
+Os conjuntos centrais são triangulares, definidos por `trimf([a, b, c])`, e os conjuntos extremos são trapezoidais, definidos por `trapmf([a, b, c, d])`.
 
 Na função triangular, a pertinência vale zero fora de [a, c], cresce linearmente até 1 em b e decresce até zero em c. Na trapezoidal, a pertinência cresce de a até b, permanece em 1 entre b e c e decresce até zero em d. Vértices repetidos nas extremidades representam ombros: por exemplo, [0, 0, 15, 22] possui pertinência 1 desde 0 até 15.
 

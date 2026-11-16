@@ -1,0 +1,4 @@
+# Mantém LF nas ontologias e no BIF para que o SHA-256 registrado nos
+# relatórios seja o mesmo em qualquer sistema operacional.
+*.owl text eol=lf
+*.bif text eol=lf

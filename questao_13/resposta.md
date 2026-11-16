@@ -116,6 +116,8 @@ O Transformer converte tokens e posições em vetores que são contextualizados 
 
 ## 9. Referências
 
+Vídeo recomendado no enunciado da questão como ponto de partida para o funcionamento da arquitetura. YouTube. Disponível em: [youtu.be/bVVm68KTD2M](https://youtu.be/bVVm68KTD2M).
+
 VASWANI, Ashish et al. Attention Is All You Need. In: Advances in Neural Information Processing Systems, v. 30, 2017. Disponível em: [artigo no arXiv](https://arxiv.org/abs/1706.03762). Acesso em: 12 nov. 2026.
 
 ALAMMAR, Jay. The Illustrated Transformer. 27 jun. 2018. Disponível em: [publicação do autor](https://jalammar.github.io/illustrated-transformer/). Acesso em: 12 nov. 2026.

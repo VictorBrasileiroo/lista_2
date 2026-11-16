@@ -1,4 +1,4 @@
-# Questão 9: recomendação educacional de livros com OWL 2
+# Questão 9: Recomendação educacional de livros com OWL 2
 
 ## 1. Aplicação e objetivo
 
@@ -54,7 +54,7 @@ Thing
 └── Editora
 ```
 
-`LivroFisico` foi acrescentada à proposta para que ambos os formatos possam ser consultados por classes inferidas. Cada classe tem função na classificação, na tipagem das propriedades ou na consistência.
+`LivroFisico` foi incluída para que ambos os formatos possam ser consultados por classes inferidas. Cada classe tem função na classificação, na tipagem das propriedades ou na consistência.
 
 Classes de tema e indivíduos de tema cumprem papéis diferentes. `TemaIA` é uma classe; `inteligencia_artificial`, `aprendizado_maquina` e `pln` são indivíduos dessa classe. A inclusão de `TemaIA` em `TemaComputacao` representa uma hierarquia de categorias. Já `subTemaDe` organiza os assuntos concretos usados nos livros.
 
@@ -132,7 +132,7 @@ Todos os livros são inicialmente declarados apenas como `Livro`. Os tipos espec
 
 ## 5. Execução do HermiT e inferências obtidas
 
-A validação foi executada em Windows, com Python 3.13.12, Owlready2 0.51 e Microsoft OpenJDK 21.0.9. A documentação oficial consultada estava na versão 0.52; as APIs foram conferidas pela execução efetiva na versão fixada 0.51.
+A validação foi executada em Windows, com Python 3.13.12, Owlready2 0.51 e Microsoft OpenJDK 21.0.9. A documentação oficial consultada estava na versão 0.52; as APIs foram conferidas pela execução efetiva na versão fixada 0.51. Em 16/11/2026, a demonstração foi reexecutada com Python 3.14.7 e Microsoft OpenJDK 21.0.13, com os mesmos resultados.
 
 O programa configura o executável Java a partir de `JAVA_EXE` ou do `PATH` e chama:
 
@@ -296,7 +296,7 @@ $env:JAVA_EXE = 'C:\Program Files\Microsoft\jdk-21.0.9.10-hotspot\bin\java.exe'
 python recomendador.py --demo
 ```
 
-Na validação deste trabalho, o download inicial foi bloqueado pelas permissões de rede do ambiente de execução. Após autorizar a instalação, o empacotamento do Owlready2 também encontrou o limite de caminhos longos do Windows. A solução foi extrair a distribuição oficial 0.51 em uma pasta temporária curta e instalar a partir dela. Não foi alterado o código do pacote. A dependência foi instalada fora do repositório e usada via `PYTHONPATH`, preservando o ambiente das outras questões. Em instalações Windows com o mesmo erro, extraia o pacote oficial em um caminho curto e execute `python -m pip install CAMINHO_DA_PASTA_EXTRAIDA`. A leitura do OWL usa `fileobj` para evitar o problema de conversão de URI local observado no Owlready2 0.51 no Windows.
+Em algumas instalações Windows, o empacotamento do Owlready2 pode esbarrar no limite de caminhos longos. Nesse caso, extraia o pacote oficial em um caminho curto e execute `python -m pip install CAMINHO_DA_PASTA_EXTRAIDA`. A leitura do OWL usa `fileobj` para evitar o problema de conversão de URI local observado no Owlready2 0.51 no Windows.
 
 ### Verificações efetivamente executadas
 

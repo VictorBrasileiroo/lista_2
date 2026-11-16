@@ -1,4 +1,4 @@
-# Questão 10: planejamento de rotas com algoritmos de busca
+# Questão 10: Planejamento de rotas com algoritmos de busca
 
 ## 1. Introdução e formulação do problema
 
@@ -208,10 +208,10 @@ python buscas.py
 A execução de validação foi realizada com Python 3.13.12, utilizando o ambiente virtual existente do repositório e este comando, dentro de `questao_10`:
 
 ```powershell
-& 'C:/Users/victo/Desktop/FACULDADE/IA/lista_2/.venv/Scripts/python.exe' -B buscas.py
+& '../.venv/Scripts/python.exe' -B buscas.py
 ```
 
-A opção `-B` evita gerar arquivos de bytecode. O comando terminou com código de saída 0, após executar as verificações internas, sem instalar dependências. Também foi consultado o diagnóstico do editor para o arquivo Python, que não apresentou erros.
+A opção `-B` evita gerar arquivos de bytecode. A saída é configurada explicitamente em UTF-8, para que as setas das rotas sejam exibidas também em consoles e redirecionamentos do Windows. O comando terminou com código de saída 0, após executar as verificações internas, sem instalar dependências. Também foi consultado o diagnóstico do editor para o arquivo Python, que não apresentou erros.
 
 As verificações efetivamente executadas foram:
 
