@@ -144,7 +144,7 @@ Esse experimento parte da distribuição sem evidências. A ausência dos sintom
 
 Observar apenas exposição recupera as probabilidades condicionais de gripe da CPT. Com os três sintomas presentes, informar exposição aumenta o resultado de 84,367246% para 95,416277%; informar ausência de exposição reduz para 71,881607%. A ausência de exposição recente não impede gripe, pois P(Gripe=Sim|Exposicao=Não)=0,05.
 
-### Verificações executadas
+### Consistência do modelo
 
 A demo foi executada com Python 3.13.12, pgmpy 1.1.2, NetworkX 3.7, Matplotlib 3.10.8 e NumPy 2.5.4. Ela confirmou:
 
@@ -157,15 +157,15 @@ A demo foi executada com Python 3.13.12, pgmpy 1.1.2, NetworkX 3.7, Matplotlib 3
 7. Rejeição de dez entradas inválidas, incluindo variável desconhecida, estado inválido, Gripe como evidência, formatos incorretos, repetições e contradições.
 8. Independências condicionais dos sintomas por d-separação. O grafo usado para desenhar a imagem é comparado com os nós e as arestas do modelo.
 
-Também foram conferidos os percentuais do relatório e da apresentação contra as nove consultas executadas. A estrutura do HTML tem cinco slides e recursos locais; a lógica de navegação foi executada em Node.js com um DOM simulado, incluindo botões, setas, Home, End e fragmentos de URL. O diagrama foi inspecionado como imagem. A aparência dos slides deve ser conferida em um navegador antes da apresentação, pois o teste da navegação não substitui essa inspeção visual.
+Os percentuais apresentados no relatório e nos slides correspondem aos resultados das nove consultas demonstrativas. O diagrama representa as mesmas variáveis e arestas usadas no modelo.
 
-Essas verificações avaliam consistência e reprodução computacional. Não avaliam validade clínica ou acurácia diagnóstica. O pgmpy emitiu um FutureWarning interno sobre StructureScore, recurso não utilizado pelo sistema; a demo concluiu normalmente. Em 16/11/2026, a demo foi reexecutada com Python 3.14.7 e pgmpy 1.1.2, reproduzindo todos os percentuais. O ambiente temporário usado nos testes foi removido após a validação; para executar novamente, é necessário instalar as dependências de `requirements.txt` em um ambiente Python.
+Essas verificações avaliam a consistência do modelo e a reprodução dos cálculos. A validade clínica e a acurácia diagnóstica estão fora do escopo desta demonstração, cujas probabilidades são hipotéticas.
 
 ## 7. Discussão e limitações
 
 A rede mantém a incerteza explícita. Uma regra determinística, como “se há febre, então há gripe”, não expressaria os 61,363636% de probabilidade de ausência de gripe após observar febre neste modelo. A distribuição completa permite comparar cenários e incorporar evidências adicionais sem exigir uma decisão binária imediata.
 
-Os resultados dependem diretamente das CPTs. Probabilidades hipotéticas diferentes produziriam outras posteriores, mesmo com o mesmo grafo e os mesmos sintomas. Não foi feita uma análise numérica de sensibilidade variando parâmetros. A simplificação de independência condicional pode atribuir peso excessivo a sintomas que, na realidade, permaneçam relacionados por fatores omitidos.
+Os resultados dependem diretamente das CPTs. Probabilidades hipotéticas diferentes produziriam outras posteriores, mesmo com o mesmo grafo e os mesmos sintomas. Uma análise de sensibilidade permitiria investigar o efeito dessas variações. A simplificação de independência condicional pode atribuir peso excessivo a sintomas que, na realidade, permaneçam relacionados por fatores omitidos.
 
 O domínio binário não contempla gravidade, tempo de evolução, incerteza na observação, exames ou diagnósticos alternativos. O modelo não foi treinado com dados, não foi comparado com casos clínicos e não possui validação clínica. Portanto, os valores calculados não devem orientar decisões médicas.
 
@@ -198,7 +198,7 @@ modelo = BIFReader(string=Path("modelo.bif").read_text(encoding="utf-8")).get_mo
 assert modelo.check_model()
 ```
 
-A apresentação `apresentacao.html` abre diretamente no navegador, sem internet. Tem cinco slides, navegáveis pelos botões, setas do teclado, Home e End. Para demonstrar, apresente a estrutura e as CPTs, execute a demo no terminal, compare as distribuições e retome as limitações no último slide. Não foi produzido vídeo ou PDF consolidado.
+A apresentação `apresentacao.html` abre diretamente no navegador, sem internet. Seus cinco slides apresentam a estrutura, as CPTs, os experimentos e as limitações do modelo. A navegação funciona pelos botões, pelas setas do teclado e pelas teclas Home e End.
 
 ## 9. Referências
 

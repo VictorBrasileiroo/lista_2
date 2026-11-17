@@ -205,15 +205,15 @@ O programa utiliza somente a biblioteca padrão do Python. A demonstração pode
 python buscas.py
 ```
 
-A execução de validação foi realizada com Python 3.13.12, utilizando o ambiente virtual existente do repositório e este comando, dentro de `questao_10`:
+Com um ambiente virtual criado na raiz do repositório, o comando equivalente no PowerShell, a partir de `questao_10/`, é:
 
 ```powershell
 & '../.venv/Scripts/python.exe' -B buscas.py
 ```
 
-A opção `-B` evita gerar arquivos de bytecode. A saída é configurada explicitamente em UTF-8, para que as setas das rotas sejam exibidas também em consoles e redirecionamentos do Windows. O comando terminou com código de saída 0, após executar as verificações internas, sem instalar dependências. Também foi consultado o diagnóstico do editor para o arquivo Python, que não apresentou erros.
+A opção `-B` evita gerar arquivos de bytecode. A saída usa UTF-8 para exibir as setas das rotas também em consoles e redirecionamentos do Windows. O programa verifica as rotas e os custos antes de apresentar os resultados.
 
-As verificações efetivamente executadas foram:
+As verificações do programa abrangem:
 
 1. Presença exata dos nove vértices e das 12 arestas, correspondência dos pesos com a especificação, simetria e positividade.
 2. Validade das arestas das rotas e igualdade entre custos retornados e somas recalculadas.

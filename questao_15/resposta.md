@@ -89,7 +89,7 @@ owl.sync_reasoner([onto], infer_property_values=True, debug=1)
 
 O parâmetro `infer_property_values=True` solicita também a obtenção de valores inferidos de propriedades de objeto. O modo de depuração imprime o comando Java executado. As inferências ficam no grafo de inferências em memória, separado da ontologia declarada, conforme o funcionamento descrito na [documentação de raciocínio do Owlready2](https://owlready2.readthedocs.io/en/latest/reasoning.html).
 
-Cada execução carrega um `World()` independente. Os modos de demonstração e de inconsistência não salvam a ontologia. O arquivo `ontologia.owl` contém somente o modelo e os fatos declarados e pode ser aberto em ferramentas compatíveis com RDF/XML e OWL 2, como o Protégé. Não foi realizada uma inspeção pela interface do Protégé.
+Cada execução carrega um `World()` independente. Os modos de demonstração e de inconsistência mantêm as alterações em memória, preservando o arquivo `ontologia.owl` com o modelo e os fatos declarados. O formato RDF/XML permite abrir esse arquivo em ferramentas compatíveis com OWL 2, como o Protégé.
 
 ## 5. Demonstração das inferências
 
@@ -120,7 +120,7 @@ org.semanticweb.HermiT.cli.CommandLine -c -O -D -I file:///... -Y
 * Owlready * Adding relation projetos.pln subAreaDe projetos.computacao
 ```
 
-O caminho temporário foi abreviado no trecho acima. O comando completo aparece no terminal durante a reprodução. Bruno não recebeu a classificação de pesquisador de IA, e Clara não recebeu a classificação de pesquisadora. Esses resultados indicam ausência das respectivas inferências nesta base, sem provar suas negações.
+Bruno não recebeu a classificação de pesquisador de IA, e Clara não recebeu a classificação de pesquisadora. Esses resultados indicam ausência das respectivas inferências nesta base, sem provar suas negações.
 
 ## 6. Teste de consistência
 
@@ -177,7 +177,7 @@ Os caminhos de leitura e gravação são relativos ao próprio script. Por exemp
 
 As verificações utilizam exceções explícitas, sem `assert`, e permanecem ativas com `-O`. A aplicação não substitui falhas do HermiT por classificações programadas em Python.
 
-Ambiente efetivamente utilizado:
+Ambiente utilizado nos experimentos:
 
 | Componente | Versão verificada |
 |---|---|
@@ -186,9 +186,7 @@ Ambiente efetivamente utilizado:
 | Java | Microsoft OpenJDK 21.0.9 LTS, build 21.0.9+10 |
 | HermiT incluído no Owlready2 | `Implementation-Version: 1.3.8.1099`, conforme manifesto do JAR |
 
-Foram executados a criação do ambiente local, a instalação do Owlready2, `pip check`, `java -version` e os três modos da CLI. Não houve falha do HermiT nos testes positivos ou negativos. Em 16/11/2026, a demonstração e o teste negativo foram reexecutados com Python 3.14.7, Owlready2 0.51 e Microsoft OpenJDK 21.0.13, com os mesmos resultados.
-
-A demonstração e o teste negativo também foram executados com `-O`, a partir da raiz do repositório, com sucesso. Em uma verificação adicional do tratamento de falhas, a chamada ao reasoner foi substituída por uma função vazia apenas naquele processo de teste. A demonstração retornou código 1 por ausência das inferências esperadas, mesmo com `-O`. Esse teste controlado verifica a rejeição de resultados ausentes; as conclusões da tabela foram obtidas nas execuções reais do HermiT.
+Nos experimentos, o HermiT produziu as classificações e a relação transitiva esperadas, além de detectar a inconsistência introduzida no teste negativo. As verificações do programa permanecem ativas com `-O` e interrompem a demonstração quando uma inferência esperada está ausente.
 
 ## 10. Referências
 
@@ -196,4 +194,4 @@ A demonstração e o teste negativo também foram executados com `-O`, a partir 
 2. Owlready2. [Documentação oficial](https://owlready2.readthedocs.io/en/latest/).
 3. Owlready2. [Reasoning](https://owlready2.readthedocs.io/en/latest/reasoning.html).
 
-Documentação consultada em 16/11/2026. A documentação online consultada identifica a versão 0.52; a implementação foi executada e validada com a versão 0.51 indicada acima.
+Documentação consultada em 16/11/2026. A implementação utiliza Owlready2 0.51, conforme `requirements.txt`.

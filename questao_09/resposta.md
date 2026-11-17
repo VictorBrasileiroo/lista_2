@@ -132,7 +132,7 @@ Todos os livros são inicialmente declarados apenas como `Livro`. Os tipos espec
 
 ## 5. Execução do HermiT e inferências obtidas
 
-A validação foi executada em Windows, com Python 3.13.12, Owlready2 0.51 e Microsoft OpenJDK 21.0.9. A documentação oficial consultada estava na versão 0.52; as APIs foram conferidas pela execução efetiva na versão fixada 0.51. Em 16/11/2026, a demonstração foi reexecutada com Python 3.14.7 e Microsoft OpenJDK 21.0.13, com os mesmos resultados.
+Os resultados desta seção foram obtidos em Windows, com Python 3.13.12, Owlready2 0.51 e Microsoft OpenJDK 21.0.9. A versão do Owlready2 está fixada no arquivo `requirements.txt`.
 
 O programa configura o executável Java a partir de `JAVA_EXE` ou do `PATH` e chama:
 
@@ -298,25 +298,11 @@ python recomendador.py --demo
 
 Em algumas instalações Windows, o empacotamento do Owlready2 pode esbarrar no limite de caminhos longos. Nesse caso, extraia o pacote oficial em um caminho curto e execute `python -m pip install CAMINHO_DA_PASTA_EXTRAIDA`. A leitura do OWL usa `fileobj` para evitar o problema de conversão de URI local observado no Owlready2 0.51 no Windows.
 
-### Verificações efetivamente executadas
+### Resultados da demonstração
 
-| Verificação | Natureza | Resultado |
-| --- | --- | --- |
-| 24 classes, 18 propriedades, 26 indivíduos, oito livros | Estrutural | Aprovada |
-| Todas as propriedades com relações na base | Estrutural | Aprovada |
-| Carregamento do RDF/XML em novo World | Leitura do arquivo | Aprovada |
-| Oito livros com tipo original apenas Livro | Estrutural | Aprovada |
-| Execução Java/HermiT e classificação dos oito livros | Reasoner real | Aprovada |
-| Relação PLN → IA ausente antes e presente depois | Reasoner e SPARQL direto | Aprovada |
-| Consistência principal e nenhuma classe insatisfatível | Reasoner real | Aprovada |
-| Contradição detectada em World isolado | Reasoner real | Aprovada |
-| Consultas de autores, tema, classe e justificativas | SPARQL nativo | Aprovada |
-| Consulta de IA básica digital: zero antes, duas depois | Comparação semântica | Aprovada |
-| Cenários alternativo e vazio | CLI e SPARQL | Aprovada |
-| SHA-256 preservado | Integridade do OWL | Aprovada |
-| Nova demo e três consultas em processos Python separados | Reprodutibilidade | Aprovada |
-| Argumentos inválidos e preferências incompletas | CLI, código 2 | Aprovada |
-| Cinco slides locais, navegação por botões e teclado | Navegador, 1280 × 900 e 390 × 844 | Aprovada, sem transbordamento horizontal |
+A demonstração carregou a ontologia com 24 classes, 18 propriedades, 26 indivíduos e oito livros. O HermiT classificou os livros, inferiu a relação transitiva entre PLN e IA e confirmou a consistência da base. No cenário com classes disjuntas, detectou a contradição introduzida em um `World` isolado.
+
+A consulta por livros digitais de IA em nível básico passou de zero resultados antes do raciocínio para duas recomendações depois dele. As consultas alternativas reproduziram os cenários descritos na seção 8. O arquivo OWL permaneceu intacto durante as execuções, e a interface rejeitou argumentos inválidos ou preferências incompletas.
 
 A apresentação pode ser aberta diretamente no navegador, sem servidor. Os botões e as teclas de seta, Page Up, Page Down, Home e End controlam a navegação. O HTML não faz requisições a recursos externos. Em telas pequenas, o conteúdo pode exigir rolagem vertical.
 

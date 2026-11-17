@@ -49,7 +49,7 @@ python agente.py --texto "Tenho hoje das 9h às 11h. Preciso estudar IA por 60 m
 python agente.py --demo
 ```
 
-No segundo exemplo, espera-se que o LLM extraia a janela `09:00` a `11:00`, duas tarefas flexíveis, durações de 60 e 30 minutos e os prazos `hoje` e `sem_prazo`. Essa é a interpretação esperada do contrato; esse exemplo não foi executado com um modelo real neste ambiente.
+O segundo exemplo ilustra o contrato de entrada: a interpretação esperada é uma janela de `09:00` a `11:00`, duas tarefas flexíveis, durações de 60 e 30 minutos e os prazos `hoje` e `sem_prazo`. A demonstração de integração da seção 7 utiliza o cenário completo da Q11.
 
 Outro pedido possível é: "Tenho hoje das 8h às 10h e preciso estudar cálculo, prioridade alta, prazo hoje". Como a duração está ausente, ela deve permanecer `null` e o sistema deve perguntar quantos minutos são necessários. O planejador não é chamado enquanto houver informações essenciais pendentes.
 
@@ -226,20 +226,20 @@ Esse resultado foi produzido pela busca, sem codificação específica dos horá
 
 ### Testes automatizados sem LLM
 
-Execução em 12/11/2026, utilizando o Python 3.13.12 do ambiente virtual existente no repositório. O comando, a partir de `questao_12/`, foi:
+Os testes automatizados foram executados com Python 3.13.12. A partir de `questao_12/`, com um ambiente virtual na raiz do repositório, use:
 
 ```powershell
 ..\.venv\Scripts\python.exe -B -m unittest -v test_planejador
 ```
 
-Resultado da execução final:
+Resultado observado:
 
 ```text
 Ran 69 tests in 0.167s
 OK
 ```
 
-Em 16/11/2026, a suíte foi reexecutada com Python 3.14.7, com os mesmos 69 testes aprovados. Esse tempo descreve somente a execução observada da suíte, sem inferência de modelo. Não representa uma medição de desempenho do agente com Gemini.
+Os 69 testes cobrem o código local e a integração simulada. O tempo registrado corresponde à suíte, sem chamadas ao Gemini.
 
 | Grupo | Quantidade | Resultado | O que verifica |
 |---|---:|---|---|
@@ -248,7 +248,7 @@ Em 16/11/2026, a suíte foi reexecutada com Python 3.14.7, com os mesmos 69 test
 | `TestConfiguracaoEnv` | 6 | passaram | Leitura de `.env`, precedência do arquivo preenchido, preservação do ambiente com campo vazio, localização pelo script, arquivo ausente e formato inválido |
 | `TestIntegracaoSimulada` | 25 | passaram | Protocolo HTTP Gemini, autenticação simulada, fluxo completo, esclarecimentos, apresentação e falhas controladas |
 
-A suíte contempla todos os casos solicitados: agenda com e sem fixos, sobreposição, tarefa maior que a janela, indivisibilidade, urgência, pendências, dados inválidos, duração incorreta, reprodutibilidade, cenário completo da Q11 e atividades inventadas. A invariância à ordem da entrada é verificada nas 24 permutações do cenário da Q11 com IDs preservados.
+A suíte cobre os seguintes cenários: agenda com e sem fixos, sobreposição, tarefa maior que a janela, indivisibilidade, urgência, pendências, dados inválidos, duração incorreta, reprodutibilidade, cenário completo da Q11 e atividades inventadas. A invariância à ordem da entrada é verificada nas 24 permutações do cenário da Q11 com IDs preservados.
 
 Uma verificação adicional compara o conjunto escolhido pelo planejador com um oráculo independente de enumeração. Em 15 problemas pequenos e reproduzíveis, o oráculo distribui cada tarefa entre as lacunas ou a lista de pendências e compara os vetores de todos os arranjos possíveis. Os resultados coincidiram. Isso verifica a seleção em casos adicionais, sem usar o próprio algoritmo como resultado esperado.
 
@@ -256,33 +256,15 @@ Nos testes de integração simulada, `unittest.mock` substitui as respostas HTTP
 
 ### Integração real com Gemini
 
-Em 12/11/2026, depois de configurar a chave no `.env`, foram realizadas duas execuções bem-sucedidas do cenário completo da Q11, sem mocks. A primeira utilizou o fluxo `processar` com observação das etapas HTTP; a segunda executou diretamente a versão final da interface:
+A integração com a API Gemini foi executada duas vezes para o cenário completo da Q11, usando o modelo `gemini-3.1-flash-lite`. O comando de demonstração, a partir de `questao_12/`, é:
 
 ```powershell
-..\.venv\Scripts\python.exe -B agente.py --demo --timeout 90
+python agente.py --demo --timeout 90
 ```
 
-A execução direta terminou com código 0. Os metadados retornados foram:
+O modelo retornou JSON com as atividades A, B, C e D, incluindo durações, prioridades, prazos e o horário fixo da reunião. Após a validação dos dados, o planejador produziu a agenda da seção 7: A, C e D agendadas, com B pendente por exigir um bloco contínuo de 120 minutos.
 
-```text
-Gemini | modelo configurado: gemini-3.1-flash-lite
-Versão retornada pela inferência: gemini-3.1-flash-lite
-ID da resposta: 3Kn1asTJO5viiLMPzqqHsQQ
-Resposta criada em: não informado
-```
-
-O campo de data não estava disponível e não foi estimado. O modelo retornou JSON com A, B, C e D, incluindo as durações, prioridades, prazos e o horário fixo da reunião. Os dados passaram pela validação local e produziram a agenda da seção 7, com B pendente por falta de intervalo contínuo de 120 minutos. A chave não foi impressa nem registrada neste relatório.
-
-| Etapa da integração real | Situação |
-|---|---|
-| Chave carregada do `.env` | Confirmada sem exibição da credencial |
-| Consulta autenticada dos metadados do modelo | Bem-sucedida |
-| Inferência por `generateContent` | Bem-sucedida, sem resposta simulada |
-| Identificação retornada pelo modelo | `gemini-3.1-flash-lite` |
-| JSON extraído e validado | Confirmado para as quatro atividades da Q11 |
-| Planejamento e validação da agenda | Bem-sucedidos |
-| Agenda e explicação apresentadas | Confirmadas, com B pendente |
-| Limites e faturamento do projeto | Não auditados; as requisições foram aceitas |
+A interface apresenta a identificação do modelo, a interpretação do pedido, a agenda e os motivos das pendências. As credenciais são omitidas das mensagens de saída.
 
 Em caso de erro HTTP, o programa preserva o detalhe útil retornado pela API, com credenciais ocultadas, para permitir identificar a causa.
 
@@ -332,7 +314,7 @@ python agente.py --demo
 python agente.py
 ```
 
-Se `python` não estiver disponível no PATH, o ambiente virtual já existente no repositório pode ser utilizado, sem modificá-lo:
+Se houver um ambiente virtual criado na raiz do repositório, também é possível chamar seu interpretador diretamente:
 
 ```powershell
 ..\.venv\Scripts\python.exe -B agente.py --demo

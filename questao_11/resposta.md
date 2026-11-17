@@ -19,17 +19,24 @@ Segundo Russell e Norvig (2021, cap. 2), um agente percebe seu ambiente e atua s
 
 O estado contém as atividades concluídas ou pendentes e os intervalos ocupados. Durante a construção do plano, também registra as tarefas já alocadas, que só serão consideradas concluídas após sua execução. Uma ação de planejamento consiste em selecionar uma atividade e atribuir a ela um intervalo de duração suficiente.
 
-O objetivo é produzir uma agenda viável que respeite as exigências obrigatórias e priorize atividades relevantes. As restrições rígidas incluem a janela de 14h a 18h, as durações, a reunião fixa, a ausência de sobreposição e a indivisibilidade. A e C precisam ser atendidas hoje. Já o prazo de B amanhã não permite considerá-la atrasada apenas porque ficou pendente hoje, mas exige acompanhamento antes do vencimento.
+O objetivo é produzir uma agenda viável que respeite as exigências obrigatórias e maximize a utilidade das atividades concluídas. As restrições rígidas incluem a janela de 14h a 18h, as durações, a reunião fixa, a ausência de sobreposição e a indivisibilidade. A e C precisam ser atendidas hoje. Já o prazo de B amanhã não permite considerá-la atrasada apenas porque ficou pendente hoje, mas exige acompanhamento antes do vencimento.
 
 Prioridades e proximidade dos prazos orientam a escolha entre planos viáveis. A exigência de priorizar atividades urgentes pode ser operacionalizada atendendo primeiro A e C, ambas de prioridade alta e prazo hoje. Isso não significa que uma tarefa de menor prioridade esteja proibida de ocupar um espaço no qual outra, mais prioritária, não caiba integralmente.
 
 O recurso explicitamente limitado é o tempo de um único professor. Não foram informadas dependências de precedência entre tarefas, como a necessidade de concluir A antes de D, nem outros recursos escassos. Se existissem, precisariam ser incluídos no modelo, sem presumir relações ausentes no enunciado.
 
-Uma função de utilidade poderia diferenciar agendas válidas, mas seus pesos e critérios teriam de ser definidos. Como o problema não fornece valores numéricos para as prioridades, a solução apresentada será justificada por viabilidade e urgência, sem alegar maximização matemática de utilidade.
+Para comparar as agendas, adotam-se pesos didáticos de 5 pontos para cada atividade de prioridade alta, 3 para a de prioridade média e 1 para a de prioridade baixa. Esses valores são uma escolha de modelagem para o exemplo, pois o enunciado fornece prioridades, mas não pontuações. A utilidade do plano é:
+
+$$
+U = 5x_A + 3x_B + 5x_C + x_D,
+\qquad x_i \in \{0,1\}.
+$$
+
+Cada variável $x_i$ vale 1 quando a atividade recebe toda a sua duração na agenda e 0 quando fica pendente. A maximização considera somente planos que respeitem as restrições, incluindo a realização de A e C hoje. Uma tarefa parcialmente alocada permanece com $x_i=0$, pois o critério valoriza atividades concluídas. A pontuação avalia o planejamento; a conclusão efetiva ainda depende da execução das tarefas.
 
 ## 3. Solução pela abordagem clássica
 
-Uma arquitetura clássica baseada em objetivos pode representar cada tarefa por identificador, duração, prioridade, prazo e, quando necessário, horário fixo. Um modelo da agenda mantém os intervalos ocupados e permite avaliar as consequências de inserir uma atividade.
+Uma arquitetura clássica baseada em objetivos e utilidade pode representar cada tarefa por identificador, duração, prioridade, prazo e, quando necessário, horário fixo. Um modelo da agenda mantém os intervalos ocupados e permite avaliar as consequências de inserir uma atividade.
 
 O agente aplica regras explícitas para descartar alocações incompatíveis. A busca ou o planejador explora combinações de tarefas e horários, verifica as restrições e compara as alternativas restantes segundo critérios declarados. Uma formulação como problema de satisfação de restrições também é possível: as variáveis representam alocações e as restrições delimitam quais combinações são admissíveis.
 
@@ -40,11 +47,11 @@ Representar tarefas, janela disponível e restrições.
 Reservar C no intervalo obrigatório de 16h a 17h.
 Buscar alocações completas para as demais tarefas, admitindo pendências.
 Descartar planos com conflitos ou que deixem de atender A e C hoje.
-Comparar os planos válidos por prioridades, prazos e critérios declarados.
+Calcular U para cada plano válido e selecionar aquele de maior utilidade.
 Verificar o plano escolhido e registrar as justificativas das pendências.
 ```
 
-Uma função de utilidade previamente definida poderia substituir ou complementar a comparação qualitativa. A característica central permanece o uso explícito de estados, ações, objetivos e restrições. O capítulo 2 de Russell e Norvig fundamenta essa caracterização do agente; a formulação concreta da agenda é uma aplicação desses conceitos ao enunciado.
+A função de utilidade permite comparar numericamente os planos que satisfazem as restrições. Estados, ações, objetivos, restrições e critérios de preferência ficam explícitos. O capítulo 2 de Russell e Norvig fundamenta essa caracterização do agente; a formulação concreta da agenda é uma aplicação desses conceitos ao enunciado.
 
 O agente também pode consultar um calendário e registrar compromissos por meio de interfaces de software. A explicação das decisões pode ser produzida a partir das regras aplicadas e dos motivos de descarte. Contudo, a confiabilidade depende da correção do modelo: uma restrição importante que não tenha sido representada não será automaticamente respeitada.
 
@@ -52,7 +59,7 @@ O agente também pode consultar um calendário e registrar compromissos por meio
 
 Em uma arquitetura hipotética com LLM, o professor descreve suas necessidades em linguagem natural. O modelo identifica tarefas, durações, prioridades, prazos e horários obrigatórios e converte essas informações em registros estruturados. Ambiguidades relevantes, como a possibilidade de dividir B, devem ser esclarecidas antes de alterar a regra de indivisibilidade.
 
-A partir desses registros, o LLM pode propor uma agenda ou solicitar uma solução a um planejador. Quando há ferramentas disponíveis, a arquitetura encaminha a proposta a um validador e consulta o calendário para conferir compromissos conhecidos. O retorno pode indicar conflitos, durações insuficientes ou tarefas omitidas. O modelo usa esse feedback para revisar a proposta e explicar as decisões ao professor.
+A partir desses registros, o LLM pode propor uma agenda ou solicitar uma solução a um planejador, usando as mesmas restrições e a função de utilidade definida na seção 2. Quando há ferramentas disponíveis, a arquitetura encaminha a proposta a um validador e consulta o calendário para conferir compromissos conhecidos. O retorno pode indicar conflitos, durações insuficientes ou tarefas omitidas. O modelo usa esse feedback para revisar a proposta e explicar as decisões ao professor.
 
 Por exemplo, se o LLM sugerisse B das 15h30 às 16h00 como tarefa concluída, um validador informaria que foram reservados somente 30 dos 120 minutos exigidos. A arquitetura precisaria corrigir o plano e manter B pendente. Esse fluxo é uma demonstração conceitual, não o relato de uma execução.
 
@@ -75,22 +82,24 @@ A e C recebem suas durações completas, atendendo às prioridades altas e aos p
 
 B permanece pendente. Depois de reservar A e C, sobram 90 minutos no total, distribuídos em intervalos de 30 e 60 minutos. Isso é insuficiente para os 120 minutos de B e também não oferece um bloco contínuo adequado. D cabe integralmente das 17h às 18h. Sua inclusão aproveita um espaço disponível sem impedir a execução completa de B, que já não seria possível nessas condições.
 
-O plano ocupa 210 minutos e deixa 30 livres. É uma solução viável, sem afirmação de que seja única ou de maior utilidade. A correção dos trabalhos deverá ser planejada antes do prazo de amanhã, mas não se pode garantir um horário em outro dia sem conhecer a disponibilidade do professor.
+O plano ocupa 210 minutos, deixa 30 livres e obtém $U=5+5+1=11$ pontos. Como A e C são obrigatórias e consomem 150 dos 240 minutos disponíveis, restam apenas 90 minutos: B, com duração de 120 minutos, não pode ser concluída em nenhum plano que atenda a essas duas atividades. Entre as tarefas restantes, D cabe integralmente e acrescenta 1 ponto. Assim, A, C e D formam o conjunto de maior utilidade sob as restrições e os pesos adotados; atender apenas A e C produziria 10 pontos. Pode haver outras distribuições de horários com o mesmo valor máximo.
+
+A correção dos trabalhos deverá ser planejada antes do prazo de amanhã, mas não se pode garantir um horário em outro dia sem conhecer a disponibilidade do professor.
 
 ### 5.2. Alternativa com divisão autorizada de B
 
-Se o professor permitir dividir B, os intervalos menores passam a comportar partes dessa tarefa:
+Se o professor permitir dividir B, os 30 minutos livres podem ser usados para adiantar a correção sem retirar uma atividade que seria concluída:
 
 | Horário | Atividade | Duração |
 | --- | --- | --- |
 | 14h00 a 15h30 | A. Preparar aula de IA | 90 minutos |
-| 15h30 a 16h00 | B. Corrigir trabalhos, primeira parte | 30 minutos |
+| 15h30 a 16h00 | B. Corrigir trabalhos, execução parcial | 30 minutos |
 | 16h00 a 17h00 | C. Reunião de pesquisa | 60 minutos |
-| 17h00 a 18h00 | B. Corrigir trabalhos, segunda parte | 60 minutos |
+| 17h00 a 18h00 | D. Revisar artigo | 60 minutos |
 
-Nesse cenário, A e C continuam integralmente atendidas. B recebe 90 dos 120 minutos necessários e permanece parcialmente pendente, com 30 minutos restantes. D também fica pendente, pois seu prazo mais distante justifica ceder o intervalo final ao avanço de B. Nenhum horário futuro é presumido.
+Nesse cenário, A, C e D continuam integralmente atendidas, mantendo a utilidade máxima de 11 pontos para tarefas concluídas. B recebe 30 dos 120 minutos necessários e permanece parcialmente pendente, com 90 minutos restantes. A agenda ocupa os 240 minutos disponíveis, sem presumir qualquer horário futuro.
 
-Essa alternativa só é admissível mediante autorização para dividir B. A mudança de restrição amplia as alocações possíveis, mas não transforma execução parcial em conclusão.
+Essa alternativa só é admissível mediante autorização para dividir B. O avanço parcial aproveita o tempo livre, mas não acrescenta pontos de conclusão. Substituir D por mais 60 minutos de B deixaria B ainda incompleta e reduziria a utilidade das tarefas concluídas para 10 pontos.
 
 ### 5.3. Verificação determinística
 
@@ -134,7 +143,7 @@ Assim, uma arquitetura híbrida pode combinar a flexibilidade linguística do LL
 
 ## 8. Considerações finais
 
-O cenário mostra que organizar uma agenda envolve interpretar objetivos e respeitar limites que não podem ser resolvidos apenas pela qualidade da explicação. Com tarefas indivisíveis, a agenda proposta conclui A, C e D, mantendo B pendente com justificativa. Se a divisão de B for autorizada, torna-se possível avançar 90 minutos nessa atividade, sem considerá-la concluída.
+O cenário mostra que organizar uma agenda envolve interpretar objetivos, definir um critério de utilidade e respeitar limites que não podem ser resolvidos apenas pela qualidade da explicação. Com tarefas indivisíveis, a agenda proposta aloca A, C e D integralmente, alcançando a utilidade máxima de 11 pontos e mantendo B pendente com justificativa. Se a divisão de B for autorizada, é possível adiantar 30 minutos dessa atividade no intervalo livre, preservando as tarefas completas e a mesma utilidade.
 
 Agentes clássicos tornam explícita a estrutura do planejamento, enquanto LLMs podem facilitar a interpretação e a interação com o professor. A escolha da arquitetura deve acompanhar os requisitos do problema. Quando há exigência de validade verificável, propostas e explicações precisam estar vinculadas a restrições, dados e verificações efetivas.
 

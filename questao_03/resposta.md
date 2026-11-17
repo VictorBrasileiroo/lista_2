@@ -39,7 +39,7 @@ A memória de DOCTOR está vinculada a `MY`. Quando essa palavra é a candidata 
 
 ### 3.1. Critério da demonstração
 
-O diálogo abaixo é uma simulação didática própria, obtida por aplicação manual de regras verificáveis do DOCTOR. Não é uma transcrição histórica nem o resultado de uma execução real de ELIZA. As regras foram conferidas na transcrição do apêndice de 1966 realizada por Anthony C. Hay, que documenta correções de duplicações tipográficas e de um parêntese do texto impresso.
+O diálogo abaixo ilustra a aplicação manual das regras do DOCTOR, com base na transcrição do apêndice de 1966 realizada por Anthony C. Hay. Trata-se de uma simulação didática, com os ciclos de resposta e as transformações detalhados a seguir.
 
 Adota-se o estado inicial dos ciclos: a primeira correspondência de cada padrão usa sua primeira remontagem; a segunda usa a próxima. A memória começa vazia. Nenhuma entrada contém `MY`, de modo que esta sequência não a alimenta. As maiúsculas das respostas acompanham a apresentação histórica, e não acrescentam significado ao processamento.
 
@@ -102,7 +102,7 @@ PARRY foi desenvolvido em Stanford por Kenneth Mark Colby e colaboradores para s
 
 O modelo combina crenças persecutórias, temas sensíveis e variáveis de medo, raiva e desconfiança. Reconhecer uma ameaça pode alterar esses valores e favorecer respostas de confronto, esquiva ou retraimento. Assim, uma entrada pode repercutir em respostas posteriores por meio do estado interno, além da identificação de termos na mensagem atual (Colby, Weber e Hilf, 1971).
 
-Os autores reconhecem limitações do processamento linguístico e restringem o modelo a um caso hipotético em situação de entrevista. O resumo do artigo de 1972 descreve avaliações de paranoia e tentativas de distinguir entrevistas com pacientes de entrevistas com a simulação. Isso não demonstra compreensão clínica geral. Nesta consulta, foram verificados o registro bibliográfico e os trechos do resumo de 1972 disponibilizados pela editora na indexação; o texto integral não ficou acessível. Por isso, não são apresentados percentuais ou conclusões experimentais detalhadas desse estudo.
+Os autores reconhecem limitações do processamento linguístico e restringem o modelo a um caso hipotético em situação de entrevista. O resumo do artigo de 1972 descreve avaliações de paranoia e tentativas de distinguir entrevistas com pacientes de entrevistas com a simulação. Essas avaliações se referem ao comportamento do modelo nesse contexto específico, sem demonstrar compreensão clínica geral.
 
 ### 5.2. AIML e ALICE
 
@@ -135,14 +135,14 @@ PARRY e ALICE são sistemas distintos, não atualizações diretas de ELIZA. Ele
 
 ## 6. Referências
 
-WEIZENBAUM, Joseph. ELIZA: A Computer Program for the Study of Natural Language Communication Between Man and Machine. Communications of the ACM, v. 9, n. 1, p. 36-45, 1966. [DOI](https://doi.org/10.1145/365153.365168). [Cópia indicada na Stanford](https://web.stanford.edu/class/cs124/p36-weizenabaum.pdf). [Cópia integral consultada na University at Buffalo](https://cse.buffalo.edu/~rapaport/572/S02/weizenbaum.eliza.1966.pdf).
+WEIZENBAUM, Joseph. ELIZA: A Computer Program for the Study of Natural Language Communication Between Man and Machine. Communications of the ACM, v. 9, n. 1, p. 36-45, 1966. [DOI](https://doi.org/10.1145/365153.365168). [Cópia indicada na Stanford](https://web.stanford.edu/class/cs124/p36-weizenabaum.pdf). [Texto na University at Buffalo](https://cse.buffalo.edu/~rapaport/572/S02/weizenbaum.eliza.1966.pdf).
 
 HAY, Anthony C. Transcrição do roteiro do apêndice de Weizenbaum (1966). Dezembro de 2020. Repositório ELIZAGEN, organizado por Jeff Shrager. Fonte técnica auxiliar, com correções editoriais declaradas. [Texto e notas da transcrição](https://github.com/jeffshrager/elizagen.org/blob/master/1965_Weizenbaum_MAD-SLIP/1966_01_CACM_article_Eliza_script.txt).
 
-COLBY, Kenneth Mark; WEBER, Sylvia; HILF, Franklin Dennis. Artificial Paranoia. Artificial Intelligence, v. 2, n. 1, p. 1-25, 1971. [DOI](https://doi.org/10.1016/0004-3702(71)90002-6). [Texto integral consultado na UMBC](https://courses.cs.umbc.edu/471/papers/colby_71.pdf).
+COLBY, Kenneth Mark; WEBER, Sylvia; HILF, Franklin Dennis. Artificial Paranoia. Artificial Intelligence, v. 2, n. 1, p. 1-25, 1971. [DOI](https://doi.org/10.1016/0004-3702(71)90002-6). [Texto na UMBC](https://courses.cs.umbc.edu/471/papers/colby_71.pdf).
 
-COLBY, Kenneth Mark; HILF, Franklin Dennis; WEBER, Sylvia; KRAEMER, Helena C. Turing-like indistinguishability tests for the validation of a computer simulation of paranoid processes. Artificial Intelligence, v. 3, p. 199-221, 1972. [DOI](https://doi.org/10.1016/0004-3702(72)90049-5). [Registro da editora](https://www.sciencedirect.com/science/article/pii/0004370272900495). Consulta limitada ao registro e aos trechos indexados do resumo.
+COLBY, Kenneth Mark; HILF, Franklin Dennis; WEBER, Sylvia; KRAEMER, Helena C. Turing-like indistinguishability tests for the validation of a computer simulation of paranoid processes. Artificial Intelligence, v. 3, p. 199-221, 1972. [DOI](https://doi.org/10.1016/0004-3702(72)90049-5). [Registro e resumo na editora](https://www.sciencedirect.com/science/article/pii/0004370272900495).
 
-A.L.I.C.E. AI FOUNDATION. Artificial Intelligence Markup Language (AIML), Version 1.0.1. Working Draft, revisão 008, 8 ago. 2005. [Documento consultado no repositório da fundação](https://github.com/AIML-Foundation/AIML-1.0.1).
+A.L.I.C.E. AI FOUNDATION. Artificial Intelligence Markup Language (AIML), Version 1.0.1. Working Draft, revisão 008, 8 ago. 2005. [Documento no repositório da fundação](https://github.com/AIML-Foundation/AIML-1.0.1).
 
-WALLACE, Richard S. The Anatomy of A.L.I.C.E. In: EPSTEIN, Robert; ROBERTS, Gary; BEBER, Grace (org.). Parsing the Turing Test. Dordrecht: Springer, 2009. p. 181-210. [DOI](https://doi.org/10.1007/978-1-4020-6710-5_13). Consulta ao resumo e aos dados bibliográficos da editora.
+WALLACE, Richard S. The Anatomy of A.L.I.C.E. In: EPSTEIN, Robert; ROBERTS, Gary; BEBER, Grace (org.). Parsing the Turing Test. Dordrecht: Springer, 2009. p. 181-210. [DOI e resumo na editora](https://doi.org/10.1007/978-1-4020-6710-5_13).

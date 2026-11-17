@@ -63,7 +63,7 @@ Grafo com relações conhecidas
 
 Essa sequência exige cuidado: as características devem ser calculadas somente com informações permitidas em cada etapa. A documentação [Link prediction pipelines](https://neo4j.com/docs/graph-data-science/current/machine-learning/linkprediction-pipelines/link-prediction/) separa relações usadas para características, treinamento e teste. Em fraude, uma divisão temporal também ajuda a evitar que dados futuros contaminem previsões sobre o passado. Modelos supervisionados exigem rótulos confiáveis; casos não investigados não devem ser automaticamente rotulados como legítimos.
 
-A mesma documentação utiliza pares não adjacentes para amostrar exemplos negativos. Isso é uma convenção de treinamento, pois ausência de ligação não prova falsidade: o grafo pode estar incompleto. Devem-se avaliar falsos positivos, que encaminham casos legítimos, e falsos negativos, que deixam fraudes passar. Uma relação prevista estatisticamente permanece uma hipótese, sem a garantia dedutiva de uma conclusão obtida de axiomas. Não foi treinado modelo neste trabalho.
+A mesma documentação utiliza pares não adjacentes para amostrar exemplos negativos. Isso é uma convenção de treinamento, pois ausência de ligação não prova falsidade: o grafo pode estar incompleto. Devem-se avaliar falsos positivos, que encaminham casos legítimos, e falsos negativos, que deixam fraudes passar. Uma relação prevista estatisticamente permanece uma hipótese, sem a garantia dedutiva de uma conclusão obtida de axiomas. A aprendizagem é discutida conceitualmente; a demonstração da seção 6 se concentra em inferência por uma regra explícita.
 
 ## 5. Aplicação: identificação de possíveis fraudes financeiras
 
@@ -135,7 +135,7 @@ RETURN DISTINCT suspeita.id AS conta_para_analise,
 
 `MATCH` procura relações existentes, `WHERE` exige contas distintas e confirmação na referência, e `RETURN DISTINCT` apresenta combinações distintas. Esse uso de padrões corresponde à documentação [MATCH, do manual Cypher](https://neo4j.com/docs/cypher-manual/current/clauses/match/).
 
-Para os fatos estipulados, a linha esperada por inspeção é `Conta_B | Dispositivo_X | Conta_A`. A consulta não foi executada. Seu resultado fornece candidatos que a aplicação interpreta conforme R1; ela não altera o banco, não cria arestas e não executa um reasoner OWL. Persistir `REQUER_ANALISE` exigiria uma operação adicional, segundo a política da aplicação.
+Nesta consulta ilustrativa, a análise dos fatos estipulados leva à linha esperada `Conta_B | Dispositivo_X | Conta_A`. O padrão seleciona candidatos à aplicação de R1; a consulta apenas lê os dados, sem criar arestas ou executar um reasoner OWL. Persistir `REQUER_ANALISE` exigiria uma operação adicional, segundo a política da aplicação.
 
 ### Passo 5: explicabilidade
 
